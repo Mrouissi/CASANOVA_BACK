@@ -1,27 +1,45 @@
 package com.istic.casanova.service.impl;
 
+import com.istic.casanova.model.Role;
 import com.istic.casanova.model.User;
-import com.istic.casanova.repository.UserRepository;
+import com.istic.casanova.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUserName(s);
+    @Transactional
+    public UserDetails loadUserByUsername(String email) {
+        User user = userService.findUserByEmail(email);
+        List<GrantedAuthority> authorities = getUserAuthority(user.getRoles());
+        return buildUserForAuthentication(user, authorities);
+    }
 
-        user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + s));
+    private List<GrantedAuthority> getUserAuthority(Set<Role> userRoles) {
+        Set<GrantedAuthority> roles = new HashSet<>();
+        for (Role role : userRoles) {
+            roles.add(new SimpleGrantedAuthority(role.getRole()));
+        }
+        return new ArrayList<>(roles);
+    }
 
-        return user.map(User::new).get();
+    private UserDetails buildUserForAuthentication(User user, List<GrantedAuthority> authorities) {
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+                user.getActive(), true, true, true, authorities);
     }
 }

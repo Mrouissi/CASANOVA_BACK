@@ -1,4 +1,4 @@
-package com.istic.casanova.service.impl;
+package com.istic.casanova.service;
 
 import com.istic.casanova.dao.ClientDao;
 import com.istic.casanova.model.Client;

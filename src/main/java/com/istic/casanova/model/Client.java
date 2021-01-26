@@ -6,8 +6,6 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "client")
-@PrimaryKeyJoinColumn(name = "id")
 public class Client extends User {
 
     @Column(name = "civilite")
@@ -58,7 +56,7 @@ public class Client extends User {
 //    }
 
     public Client(Client client) {
-        super(client);
+//        super(client);
         this.civilite = client.getCivilite();
         this.ville = client.getVille();
         this.codePostal = client.getCodePostal();
@@ -143,7 +141,7 @@ public class Client extends User {
                 ", ville='" + ville + '\'' +
                 ", codePostal='" + codePostal + '\'' +
                 ", adresse='" + adresse + '\'' +
-                ", mail='" + super.getMail() + '\'' +
+//                ", mail='" + super.getMail() + '\'' +
                 ", telFixe='" + telFixe + '\'' +
                 ", telPortable='" + telPortable + '\'' +
                 ", profil='" + profil + '\'' +

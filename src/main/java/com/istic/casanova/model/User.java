@@ -5,20 +5,20 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
+import java.util.Collections;
+import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "user")
-public class User implements UserDetails {
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private UUID id; // ou mail en tant que id ??
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    private UUID id; // ou email en tant que id ??
 
     @Column(name = "nom")
     private String nom;
@@ -26,86 +26,80 @@ public class User implements UserDetails {
     @Column(name = "prenom")
     private String prenom;
 
-    @Column(name = "mail")
-    private String mail;
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "password")
     private String password;
 
-    private List<GrantedAuthority> authorities;
+    @Column(name = "active")
+    private Boolean active;
 
-    private String roles;
-
-    public User(User user) {
-        this.id = user.getId();
-        this.nom = user.getNom();
-        this.prenom = user.getPrenom();
-        this.mail = user.getMail();
-        this.authorities = Arrays.stream(this.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+    public Boolean getActive() {
+        return active;
     }
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
+
+    public User() {
+    }
+
+//    public User(User user) {
+//        this.id = user.getId();
+//        this.nom = user.getNom();
+//        this.prenom = user.getPrenom();
+//        this.email = user.getEmail();
+//    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public UUID getId() { return id; }
-
-    public void setId(UUID id) { this.id = id; }
-
-    public String getNom() { return nom; }
-
-    public void setNom(String nom) { this.nom = nom; }
-
-    public String getPrenom() { return prenom; }
-
-    public void setPrenom(String prenom) { this.prenom = prenom; }
-
-    public String getMail() {
-        return mail;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public UUID getId() {
+        return id;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setId(UUID id) {
+        this.id = id;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
 
-    public String getRoles() { return roles; }
+    public void setActive(Boolean active) { this.active = active; }
 
-    public void setRoles(String roles) { this.roles = roles; }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return mail;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
