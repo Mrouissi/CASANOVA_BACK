@@ -1,105 +1,43 @@
 package com.istic.casanova.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.UUID;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private UUID id; // ou email en tant que id ??
+    private Long id;
 
-    @Column(name = "nom")
-    private String nom;
-
-    @Column(name = "prenom")
-    private String prenom;
-
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = "nom", nullable = false)
+    private String nom;
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
-
-    public User() {
-    }
-
-//    public User(User user) {
-//        this.id = user.getId();
-//        this.nom = user.getNom();
-//        this.prenom = user.getPrenom();
-//        this.email = user.getEmail();
-//    }
+    @Column(name = "prenom", nullable = false)
+    private String prenom;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public UUID getId() {
-        return id;
-    }
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
     public String getPassword() { return password; }
-
     public void setPassword(String password) { this.password = password; }
 
-    public void setActive(Boolean active) { this.active = active; }
+    public String getNom() { return nom;}
+    public void setNom(String nom) { this.nom = nom; }
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
-        return roles;
-    }
+    public String getPrenom() { return prenom; }
+    public void setPrenom(String prenom) { this.prenom = prenom; }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
 }
