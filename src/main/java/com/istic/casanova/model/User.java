@@ -1,6 +1,9 @@
 package com.istic.casanova.model;
 
+import com.istic.casanova.validator.annotation.UniqueEmail;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "user")
@@ -11,7 +14,9 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @UniqueEmail
+    @NotBlank(message = "Email obligatoire")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "password", nullable = false)

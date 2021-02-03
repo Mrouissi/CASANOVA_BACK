@@ -8,6 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 public class AppUserDetailsService implements UserDetailsService {
 
@@ -22,4 +24,12 @@ public class AppUserDetailsService implements UserDetailsService {
         }
         return new UserDetailsImpl(user);
     }
+
+    @Transactional
+    public boolean isEmailUse(String email){
+        boolean emailInDb = true;
+        if (userRepository.findByEmail(email) == null) emailInDb = false;
+        return emailInDb;
+    }
+
 }
