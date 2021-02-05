@@ -28,6 +28,9 @@ public class User {
     @Column(name = "prenom", nullable = false)
     private String prenom;
 
+    @Column(name = "prenom", nullable = false)
+    private String role;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() { return id; }

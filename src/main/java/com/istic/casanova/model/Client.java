@@ -32,6 +32,9 @@ public class Client extends User {
     @Column(name = "profession")
     private String profession;
 
+    @Column(name = "role")
+    private String role = "ROLE_CLIENT";
+
     private List<Chantier> chantiers;
 
     public String getCivilite() {
