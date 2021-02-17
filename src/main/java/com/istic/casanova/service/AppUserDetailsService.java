@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 public class AppUserDetailsService implements UserDetailsService {
@@ -18,17 +19,17 @@ public class AppUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(username);
-        if (user == null) {
+        Optional<User> user = userRepository.findByEmail(username);
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("User : " + username + " not found");
         }
-        return new UserDetailsImpl(user);
+        return new UserDetailsImpl(user.get());
     }
 
     @Transactional
     public boolean isEmailUse(String email){
         boolean emailInDb = true;
-        if (userRepository.findByEmail(email) == null) emailInDb = false;
+        if (userRepository.findByEmail(email).isEmpty()) emailInDb = false;
         return emailInDb;
     }
 

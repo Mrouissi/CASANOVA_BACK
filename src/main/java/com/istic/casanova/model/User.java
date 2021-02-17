@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "user")
+@Inheritance(strategy= InheritanceType.JOINED)
 public class User {
 
     @Id
@@ -28,7 +29,7 @@ public class User {
     @Column(name = "prenom", nullable = false)
     private String prenom;
 
-    @Column(name = "prenom", nullable = false)
+    @Column(name = "role", nullable = false)
     private String role;
 
     @Id
@@ -47,5 +48,8 @@ public class User {
 
     public String getPrenom() { return prenom; }
     public void setPrenom(String prenom) { this.prenom = prenom; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 
 }

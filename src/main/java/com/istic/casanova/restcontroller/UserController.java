@@ -4,12 +4,10 @@ import com.istic.casanova.model.User;
 import com.istic.casanova.repository.UserRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,29 +32,37 @@ public class UserController {
         return user.get();
     }
 
-    @GetMapping("/users/{email}")
+    @GetMapping("/users/mail/{email}")
     public User getUserByEmail(@PathVariable String email) throws NotFoundException {
-        return userRepository.findByEmail(email);
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isEmpty()) {
+            throw new NotFoundException("User not found, email : "+email);
+        }
+        return user.get();
     }
 
     @DeleteMapping("/users/{id}")
-    public void deleteStudent(@PathVariable long id) {
+    public void deleteUser(@PathVariable long id) {
         userRepository.deleteById(id);
     }
 
     @PostMapping("/users")
-    public ResponseEntity<Object> createUser(@RequestBody User user) {
-        User savedUser = userRepository.save(user);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(savedUser.getId()).toUri();
-
-        return ResponseEntity.created(location).build();
-
+    public ResponseEntity<String> createUser(@RequestBody User user) {
+        Optional<User> testUser = userRepository.findByEmail(user.getEmail());
+        if (testUser.isEmpty()) {
+            User savedUser = userRepository.save(user);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body("User created");
+        } else {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Email already use");
+        }
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity<Object> updateStudent(@RequestBody User user, @PathVariable long id) {
+    public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable long id) {
 
         Optional<User> userOptional = userRepository.findById(id);
         if (userOptional.isEmpty())

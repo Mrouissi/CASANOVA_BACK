@@ -7,14 +7,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
-@RequestMapping("/auth")
 public class AuthenticationController {
 
     @Autowired
@@ -37,5 +34,4 @@ public class AuthenticationController {
 
         return "register_success";
     }
-
 }

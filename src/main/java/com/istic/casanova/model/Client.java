@@ -1,8 +1,8 @@
 package com.istic.casanova.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -33,9 +33,10 @@ public class Client extends User {
     private String profession;
 
     @Column(name = "role")
-    private String role = "ROLE_CLIENT";
+    private final String role = "ROLE_CLIENT";
 
-    private List<Chantier> chantiers;
+    @JsonManagedReference
+    private List<Dossier> dossiers;
 
     public String getCivilite() {
         return civilite;
@@ -101,12 +102,12 @@ public class Client extends User {
         this.profession = profession;
     }
 
+    public String getRole() { return role; }
+
     @OneToMany(mappedBy = "client")
-    public List<Chantier> getChantiers() {
-        return chantiers;
+    public List<Dossier> getDossiers() {
+        return dossiers;
     }
 
-    public void setChantiers(List<Chantier> chantiers) {
-        this.chantiers = chantiers;
-    }
+    public void setDossiers(List<Dossier> dossiers) { this.dossiers = dossiers; }
 }

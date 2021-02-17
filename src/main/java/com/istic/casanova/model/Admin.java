@@ -7,5 +7,8 @@ import javax.persistence.Entity;
 public class Admin extends User {
 
     @Column(name = "role")
-    private String role = "ROLE_ADMIN";
+    private final String role = "ROLE_ADMIN";
+
+    public String getRole() { return role; }
+
 }

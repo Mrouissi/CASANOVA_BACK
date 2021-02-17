@@ -1,12 +1,8 @@
 package com.istic.casanova.repository;
 
 import com.istic.casanova.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
+import javax.transaction.Transactional;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long>{
-    @Query("SELECT u FROM User u WHERE u.email = ?1")
-    User findByEmail(String email);
+@Transactional
+public interface UserRepository extends AbstractRepository<User>{
 }

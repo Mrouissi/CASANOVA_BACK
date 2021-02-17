@@ -1,18 +1,22 @@
 package com.istic.casanova.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "chantier")
 public class Chantier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "chantier_id")
     private Long id;
 
-    @ManyToOne
-    @Column(name = "client")
-    private Client client;
+    @OneToOne
+    @JsonManagedReference
+    private Dossier dossier;
 
     @Column(name = "code_postal")
     private String code_postal;
@@ -52,13 +56,13 @@ public class Chantier {
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
-    @ManyToOne
-    public Client getClient() {
-        return client;
+    @OneToOne
+    public Dossier getDossier() {
+        return dossier;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setDossier(Dossier dossier) {
+        this.dossier = dossier;
     }
 
     public String getCode_postal() {

@@ -7,6 +7,6 @@ import javax.persistence.Entity;
 public class Commercial extends User {
 
     @Column(name = "role")
-    private String role = "ROLE_COMMERCIAL";
+    private final String role = "ROLE_COMMERCIAL";
 
 }
