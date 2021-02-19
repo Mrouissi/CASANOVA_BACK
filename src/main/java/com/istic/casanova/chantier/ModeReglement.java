@@ -1,7 +1,13 @@
 package com.istic.casanova.chantier;
 import javax.persistence.*;
 
+@Entity
 public class ModeReglement {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ModeReglement_id")
+    private Long id;
 
     @Column(name = "montantTTC")
     private Long montantTTC;

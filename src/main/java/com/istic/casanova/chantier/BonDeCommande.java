@@ -5,17 +5,18 @@ import java.util.Date;
 @Entity
 public class BonDeCommande {
 
-
-
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bonId;
 
-
-@OneToOne
+    @OneToOne
     private Facturation facturation;
+
+    @OneToOne
     private LieuEtSuivi lieuEtSuivi;
+
+    @OneToOne
     private ModeReglement modeReglement;
     private Date dateBon;
     private Integer numBon;

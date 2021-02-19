@@ -2,18 +2,20 @@ package com.istic.casanova.chantier;
 
 import com.istic.casanova.model.Client;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
+@Entity
 public class Facturation {
 
-    @Column(name = "nom_client")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "facturation_id")
+    private Long id;
 
     @ManyToOne
     private Client client;
 
-@OneToOne
+    @OneToOne
     private BonDeCommande bonDeCommande;
 
     public String getCName() {

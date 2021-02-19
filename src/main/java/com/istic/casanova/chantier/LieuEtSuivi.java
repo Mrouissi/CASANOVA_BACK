@@ -2,13 +2,18 @@ package com.istic.casanova.chantier;
 
 import javax.persistence.*;
 
+@Entity
 public class LieuEtSuivi {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "facturation_id")
+    private Long id;
 
     @Column(name = "adresse")
     private String adresse;
 
-    @Column(name = "CP+ville")
+    @Column(name = "CP_ville")
     private String cpEtVille;
 
     @Column(name = "observation")

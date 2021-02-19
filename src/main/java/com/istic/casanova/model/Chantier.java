@@ -1,6 +1,5 @@
 package com.istic.casanova.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -54,6 +53,7 @@ public class Chantier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() { return id; }
+
     public void setId(Long id) { this.id = id; }
 
     @OneToOne

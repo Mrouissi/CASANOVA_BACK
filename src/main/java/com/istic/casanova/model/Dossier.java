@@ -1,9 +1,10 @@
 package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.istic.casanova.enums.EtatDossier;
+import com.istic.casanova.utils.enums.EtatDossier;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Dossier {
@@ -18,17 +19,24 @@ public class Dossier {
     private Client client;
 
     @Enumerated(EnumType.STRING)
-    private EtatDossier etatDossier;
+    private EtatDossier etat_dossier;
+
+    @Enumerated(EnumType.STRING)
+    private EtatDossier etat_chaniter;
 
     @OneToOne
     @JsonBackReference
     private Chantier chantier;
 
-    @Column(name = "montantAcompte")
-    private String montantAcompte;
+    @Column(name = "montant_acompte")
+    private String montant_acompte;
 
-    @Column(name = "montantTotal")
-    private String montantTotal;
+    @Column(name = "montant_total")
+    private String montant_total;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_commande")
+    private Date date_commande;
 
     public Long getId() {
         return id;
@@ -47,10 +55,10 @@ public class Dossier {
         this.client = client;
     }
 
-    public EtatDossier getEtatDossier() { return etatDossier; }
+    public EtatDossier getEtat_dossier() { return etat_dossier; }
 
-    public void setEtatDossier(EtatDossier etatDossier) {
-        this.etatDossier = etatDossier;
+    public void setEtatDossier(EtatDossier etat_dossier) {
+        this.etat_dossier = etat_dossier;
     }
 
     public Chantier getChantier() {
@@ -61,19 +69,23 @@ public class Dossier {
         this.chantier = chantier;
     }
 
-    public String getMontantAcompte() {
-        return montantAcompte;
+    public String getMontant_acompte() {
+        return montant_acompte;
     }
 
-    public void setMontantAcompte(String montantAcompte) {
-        this.montantAcompte = montantAcompte;
+    public void setMontant_acompte(String montant_acompte) {
+        this.montant_acompte = montant_acompte;
     }
 
-    public String getMontantTotal() {
-        return montantTotal;
+    public String getMontant_total() {
+        return montant_total;
     }
 
-    public void setMontantTotal(String montantTotal) {
-        this.montantTotal = montantTotal;
+    public void setMontant_total(String montant_total) {
+        this.montant_total = montant_total;
     }
+
+    public Date getDate_commande() { return date_commande; }
+
+    public void setDate_commande(Date date_commande) { this.date_commande = date_commande; }
 }

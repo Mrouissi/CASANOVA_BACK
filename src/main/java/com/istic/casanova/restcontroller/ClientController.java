@@ -68,7 +68,6 @@ public class ClientController {
 
     @PutMapping("/clients/{id}")
     public ResponseEntity<Object> updateClient(@RequestBody Client client, @PathVariable long id) {
-
         Optional<Client> clientOptional = clientRepository.findById(id);
         if (clientOptional.isEmpty())
             return ResponseEntity.notFound().build();
