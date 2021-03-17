@@ -2,9 +2,8 @@ package com.istic.casanova.utils.enums;
 
 public enum EtatDossier {
 
-    CommandeAttenteValidation,
-    CommandeEnregistree,
-    CommandeAttenteProgrammation
-
+    COMMANDE_ATTENTE_VALIDATION,
+    COMMANDE_ENREGISTREE,
+    COMMANDE_ATTENTE_PROGRAMMATION,
 
 }

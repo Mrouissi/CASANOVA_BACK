@@ -1,5 +1,6 @@
 package com.istic.casanova.restcontroller;
 
+import com.istic.casanova.model.Admin;
 import com.istic.casanova.model.Client;
 import com.istic.casanova.model.Dossier;
 import com.istic.casanova.model.User;
@@ -87,5 +88,4 @@ public class ClientController {
         }
         return dossiers;
     }
-
 }

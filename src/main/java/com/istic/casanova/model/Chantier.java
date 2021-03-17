@@ -1,6 +1,7 @@
 package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.istic.casanova.utils.enums.EtatDossier;
 
 import javax.persistence.*;
 
@@ -16,6 +17,9 @@ public class Chantier {
     @OneToOne
     @JsonManagedReference
     private Dossier dossier;
+
+    @Enumerated(EnumType.STRING)
+    private EtatDossier etat_chaniter;
 
     @Column(name = "code_postal")
     private String code_postal;
