@@ -59,9 +59,6 @@ public class Dossier {
     public EtatDossier getEtat_dossier() { return etat_dossier; }
     public void setEtat_dossier(EtatDossier etat_dossier) { this.etat_dossier = etat_dossier; }
 
-    public EtatDossier getEtat_chaniter() { return etat_chaniter; }
-    public void setEtat_chaniter(EtatDossier etat_chaniter) { this.etat_chaniter = etat_chaniter; }
-
     public Chantier getChantier() { return chantier; }
     public void setChantier(Chantier chantier) { this.chantier = chantier; }
 
