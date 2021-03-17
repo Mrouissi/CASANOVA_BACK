@@ -2,6 +2,7 @@ package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.istic.casanova.utils.enums.EtatAcompte;
 import com.istic.casanova.utils.enums.EtatDossier;
 
 import javax.persistence.*;
@@ -22,6 +23,9 @@ public class Dossier {
 
     @Enumerated(EnumType.STRING)
     private EtatDossier etat_dossier;
+
+    @Enumerated(EnumType.STRING)
+    private EtatAcompte etat_acompte;
 
     @OneToOne
     @JsonBackReference
@@ -58,6 +62,9 @@ public class Dossier {
 
     public EtatDossier getEtat_dossier() { return etat_dossier; }
     public void setEtat_dossier(EtatDossier etat_dossier) { this.etat_dossier = etat_dossier; }
+
+    public EtatAcompte getEtat_acompte() { return etat_acompte; }
+    public void setEtat_acompte(EtatAcompte etat_acompte) { this.etat_acompte = etat_acompte; }
 
     public Chantier getChantier() { return chantier; }
     public void setChantier(Chantier chantier) { this.chantier = chantier; }

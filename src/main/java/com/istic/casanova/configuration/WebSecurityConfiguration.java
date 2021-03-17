@@ -49,19 +49,17 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                //Disable csrf for testing
                 .csrf().disable()
                 .httpBasic()
         .and()
                 .authorizeRequests()
-                    .antMatchers("/login", "/api/users").permitAll()
-                    .anyRequest().authenticated()
+                    .antMatchers("/login").permitAll()
+                    .anyRequest().fullyAuthenticated()
                 .and()
                     .formLogin()
                     .usernameParameter("email")
                     .defaultSuccessUrl("/")
-                    .permitAll()
                 .and()
-                    .logout().logoutSuccessUrl("/").permitAll();
+                    .logout().logoutSuccessUrl("/login").permitAll();
     }
 }
