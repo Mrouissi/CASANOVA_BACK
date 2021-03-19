@@ -3,12 +3,16 @@ package com.istic.casanova.restcontroller;
 import com.istic.casanova.model.User;
 import com.istic.casanova.repository.UserRepository;
 import javassist.NotFoundException;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -17,6 +21,33 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+//    @RequestMapping("/login")
+//    public Map<User, String> login(@RequestBody String user) throws JSONException {
+//        User user1 = new User();
+//        Map<User, String> map = new HashMap<>();
+//        JSONObject json = new JSONObject(user);
+//        if (userRepository.findByEmail(json.getString("username")).isPresent()) {
+//            user1 = userRepository.findByEmail(json.getString("username")).get();
+//            map.put(user1, "User exist");
+//            return map;
+//        } else {
+//            map.put(user1, "User not exist");
+//            return map;
+//        }
+//    }
+
+    @RequestMapping("/login")
+    public User login(@RequestBody String user) throws JSONException {
+        User user1 = new User();
+        JSONObject json = new JSONObject(user);
+        if (userRepository.findByEmail(json.getString("username")).isPresent()) {
+            user1 = userRepository.findByEmail(json.getString("username")).get();
+            return user1;
+        } else {
+            return user1;
+        }
+    }
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
