@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -43,7 +44,12 @@ public class UserController {
         JSONObject json = new JSONObject(user);
         if (userRepository.findByEmail(json.getString("username")).isPresent()) {
             user1 = userRepository.findByEmail(json.getString("username")).get();
-            return user1;
+            boolean pass = BCrypt.checkpw(json.getString("username"), user1.getPassword());
+            if (!pass) {
+                return new User();
+            } else {
+                return user1;
+            }
         } else {
             return user1;
         }

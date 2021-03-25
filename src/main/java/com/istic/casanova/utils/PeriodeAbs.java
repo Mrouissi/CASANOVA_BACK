@@ -15,7 +15,7 @@ public class PeriodeAbs {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "client_abs")
     private Client client;
 
     @Column(name = "date_debut")

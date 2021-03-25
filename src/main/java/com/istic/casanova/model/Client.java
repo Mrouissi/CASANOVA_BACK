@@ -36,13 +36,13 @@ public class Client extends User {
     @Column(name = "role")
     private final String role = "ROLE_CLIENT";
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "client_dossier")
     private List<Dossier> dossiers;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "client_abs")
     private List<PeriodeAbs> periodes_abs;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "client_avis")
     private Avis avis;
 
     public String getCivilite() {

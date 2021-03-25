@@ -1,6 +1,5 @@
 package com.istic.casanova.restcontroller;
 
-import com.istic.casanova.model.Admin;
 import com.istic.casanova.model.Client;
 import com.istic.casanova.model.Dossier;
 import com.istic.casanova.model.User;
@@ -65,7 +64,8 @@ public class ClientController {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
                     .body("Email already use");
-        }    }
+        }
+    }
 
     @PutMapping("/clients/{id}")
     public ResponseEntity<Object> updateClient(@RequestBody Client client, @PathVariable long id) {
