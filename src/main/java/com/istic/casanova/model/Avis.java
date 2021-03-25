@@ -18,7 +18,7 @@ public class Avis {
     @Column(name = "message")
     private String message;
 
-    @JsonBackReference
+    @JsonBackReference(value = "client_avis")
     @OneToOne(targetEntity = Client.class)
     private Client client;
 

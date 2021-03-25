@@ -1,10 +1,11 @@
 package com.istic.casanova.restcontroller;
 
-import com.istic.casanova.model.*;
-import com.istic.casanova.repository.ClientRepository;
+import com.istic.casanova.model.Dossier;
+import com.istic.casanova.model.FileDB;
 import com.istic.casanova.repository.DossierRepository;
 import com.istic.casanova.service.FileStorageService;
 import com.istic.casanova.utils.message.ResponseFile;
+import com.istic.casanova.utils.message.ResponseMessage;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -29,21 +31,26 @@ public class DossierController {
     private FileStorageService storageService;
 
     @PostMapping("/dossiers/{id}/upload")
-    public ResponseEntity<String> uploadFile(@PathVariable Long id,
-                                             @RequestParam("file") MultipartFile file) throws NotFoundException {
+    public ResponseEntity<String> uploadFiles(@PathVariable Long id,
+                                              @RequestParam("files") MultipartFile[] files,
+                                              @RequestParam("categories") String[] categories) throws NotFoundException {
         String message = "";
         Optional<Dossier> dossier = dossierRepository.findById(id);
         if(dossier.isEmpty()) {
             throw new NotFoundException("Dossier not found, id : " + id);
         }
         try {
-            FileDB fileDB = storageService.store(file, dossier.get());
-            dossier.get().addFile(fileDB);
-            message = "Uploaded the file successfully: " + file.getOriginalFilename();
+            List<String> fileNames = new ArrayList<>();
+            int i = 0;
+            for(MultipartFile file: files) {
+                FileDB fileDB = storageService.store(file, dossier.get(), categories[i]);
+                fileNames.add(file.getOriginalFilename());
+                i++;
+            }
+            message = "Uploaded the files successfully: " + fileNames;
             return ResponseEntity.status(HttpStatus.OK).body(message);
-
         } catch (Exception e) {
-            message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+            message = "Could not upload the files ";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
     }

@@ -18,7 +18,7 @@ public class Dossier {
     private Long id;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "client_dossier")
     private Client client;
 
     @Enumerated(EnumType.STRING)

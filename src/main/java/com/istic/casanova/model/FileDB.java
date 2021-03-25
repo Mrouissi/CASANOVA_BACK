@@ -18,6 +18,9 @@ public class FileDB {
     @Column(name = "type")
     private String type;
 
+    @Column(name = "categorie")
+    private String categorie;
+
     @Lob
     private byte[] data;
 
@@ -46,6 +49,13 @@ public class FileDB {
 
     public byte[] getData() { return data; }
     public void setData(byte[] data) { this.data = data; }
+
+    public String getCategorie() {
+        return categorie;
+    }
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
 
     @ManyToOne
     public Dossier getDossier() { return dossier; }
