@@ -1,5 +1,6 @@
 package com.istic.casanova.restcontroller;
 
+import com.istic.casanova.model.Admin;
 import com.istic.casanova.model.Client;
 import com.istic.casanova.model.Dossier;
 import com.istic.casanova.model.User;
@@ -68,7 +69,6 @@ public class ClientController {
 
     @PutMapping("/clients/{id}")
     public ResponseEntity<Object> updateClient(@RequestBody Client client, @PathVariable long id) {
-
         Optional<Client> clientOptional = clientRepository.findById(id);
         if (clientOptional.isEmpty())
             return ResponseEntity.notFound().build();
@@ -88,5 +88,4 @@ public class ClientController {
         }
         return dossiers;
     }
-
 }

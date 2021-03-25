@@ -1,7 +1,7 @@
 package com.istic.casanova.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.istic.casanova.utils.enums.EtatDossier;
 
 import javax.persistence.*;
 
@@ -17,6 +17,9 @@ public class Chantier {
     @OneToOne
     @JsonManagedReference
     private Dossier dossier;
+
+    @Enumerated(EnumType.STRING)
+    private EtatDossier etat_chaniter;
 
     @Column(name = "code_postal")
     private String code_postal;
@@ -54,102 +57,54 @@ public class Chantier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() { return id; }
+
     public void setId(Long id) { this.id = id; }
 
     @OneToOne
     public Dossier getDossier() {
         return dossier;
     }
-
     public void setDossier(Dossier dossier) {
         this.dossier = dossier;
     }
 
+    public EtatDossier getEtat_chaniter() { return etat_chaniter; }
+    public void setEtat_chaniter(EtatDossier etat_chaniter) { this.etat_chaniter = etat_chaniter; }
+
     public String getCode_postal() {
         return code_postal;
     }
-
     public void setCode_postal(String code_postal) {
         this.code_postal = code_postal;
     }
 
-    public String getVille() {
-        return ville;
-    }
+    public String getVille() { return ville; }
+    public void setVille(String ville) { this.ville = ville; }
 
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
+    public String getAdresse() { return adresse; }
+    public void setAdresse(String adresse) { this.adresse = adresse; }
 
-    public String getAdresse() {
-        return adresse;
-    }
+    public String getDate_commande() { return date_commande; }
+    public void setDate_commande(String date_commande) { this.date_commande = date_commande; }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
+    public String getDate_limite() { return date_limite; }
+    public void setDate_limite(String date_limite) { this.date_limite = date_limite; }
 
-    public String getDate_commande() {
-        return date_commande;
-    }
+    public String getObservation() { return observation; }
+    public void setObservation(String observation) { this.observation = observation; }
 
-    public void setDate_commande(String date_commande) {
-        this.date_commande = date_commande;
-    }
+    public String getConseiller() { return conseiller; }
+    public void setConseiller(String conseiller) { this.conseiller = conseiller; }
 
-    public String getDate_limite() {
-        return date_limite;
-    }
+    public String getInspecteur() { return inspecteur; }
+    public void setInspecteur(String inspecteur) { this.inspecteur = inspecteur; }
 
-    public void setDate_limite(String date_limite) {
-        this.date_limite = date_limite;
-    }
+    public String getAnticipable() { return anticipable; }
+    public void setAnticipable(String anticipable) { this.anticipable = anticipable; }
 
-    public String getObservation() {
-        return observation;
-    }
+    public String getTravaux() { return travaux; }
+    public void setTravaux(String travaux) { this.travaux = travaux; }
 
-    public void setObservation(String observation) {
-        this.observation = observation;
-    }
-
-    public String getConseiller() {
-        return conseiller;
-    }
-
-    public void setConseiller(String conseiller) {
-        this.conseiller = conseiller;
-    }
-
-    public String getInspecteur() {
-        return inspecteur;
-    }
-
-    public void setInspecteur(String inspecteur) {
-        this.inspecteur = inspecteur;
-    }
-
-    public String getAnticipable() {
-        return anticipable;
-    }
-
-    public void setAnticipable(String anticipable) {
-        this.anticipable = anticipable;
-    }
-
-    public String getTravaux() {
-        return travaux;
-    }
-
-    public void setTravaux(String travaux) {
-        this.travaux = travaux;
-    }
-
-    public String getVisite_technique() {
-        return visite_technique;
-    }
-
-    public void setVisite_technique(String visite_technique) {
-        this.visite_technique = visite_technique;
-    }
+    public String getVisite_technique() { return visite_technique; }
+    public void setVisite_technique(String visite_technique) { this.visite_technique = visite_technique; }
 }
