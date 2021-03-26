@@ -1,6 +1,7 @@
 package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.istic.casanova.utils.enums.EtatChantier;
 import com.istic.casanova.utils.enums.EtatDossier;
 
 import javax.persistence.*;
@@ -18,8 +19,9 @@ public class Chantier {
     @JsonManagedReference
     private Dossier dossier;
 
-    @Enumerated(EnumType.STRING)
-    private EtatDossier etat_chaniter;
+//    @Enumerated(EnumType.STRING)
+    @Column(name = "etat_chantier")
+    private String etat_chantier;
 
     @Column(name = "code_postal")
     private String code_postal;
@@ -68,8 +70,11 @@ public class Chantier {
         this.dossier = dossier;
     }
 
-    public EtatDossier getEtat_chaniter() { return etat_chaniter; }
-    public void setEtat_chaniter(EtatDossier etat_chaniter) { this.etat_chaniter = etat_chaniter; }
+//    public EtatChantier getEtat_chantier() { return etat_chantier; }
+//    public void setEtat_chantier(EtatChantier etat_chantier) { this.etat_chantier = etat_chantier; }
+
+    public String getEtat_chantier() { return etat_chantier; }
+    public void setEtat_chantier(String etat_chantier) { this.etat_chantier = etat_chantier; }
 
     public String getCode_postal() {
         return code_postal;
