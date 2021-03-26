@@ -42,8 +42,8 @@ public class Client extends User {
     @JsonManagedReference(value = "client_abs")
     private List<PeriodeAbs> periodes_abs;
 
-    @JsonManagedReference(value = "client_avis")
-    private Avis avis;
+//    @JsonManagedReference(value = "client_avis")
+//    private Avis avis;
 
     public String getCivilite() {
         return civilite;
@@ -121,7 +121,7 @@ public class Client extends User {
     public List<PeriodeAbs> getPeriodes_abs() { return periodes_abs; }
     public void setPeriodes_abs(List<PeriodeAbs> periodes_abs) { this.periodes_abs = periodes_abs; }
 
-    @OneToOne
-    public Avis getAvis() { return avis; }
-    public void setAvis(Avis avis) { this.avis = avis; }
+//    @OneToOne
+//    public Avis getAvis() { return avis; }
+//    public void setAvis(Avis avis) { this.avis = avis; }
 }

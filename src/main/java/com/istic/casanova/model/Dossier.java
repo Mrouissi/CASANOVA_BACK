@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.istic.casanova.utils.enums.EtatAcompte;
 import com.istic.casanova.utils.enums.EtatDossier;
+import com.istic.casanova.utils.enums.EtatSAV;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -28,7 +29,7 @@ public class Dossier {
     private EtatAcompte etat_acompte;
 
     @OneToOne
-    @JsonBackReference
+    @JsonManagedReference(value = "dossier_chantier")
     private Chantier chantier;
 
     @Column(name = "montant_acompte")
@@ -44,6 +45,9 @@ public class Dossier {
     @JsonManagedReference
     @ElementCollection(targetClass=FileDB.class)
     private List<FileDB> files;
+
+    @Enumerated(EnumType.STRING)
+    private EtatSAV etat_sav;
 
     public Long getId() {
         return id;
@@ -83,4 +87,7 @@ public class Dossier {
 
     public void setFiles(List<FileDB> files) { this.files = files; }
     public void addFile(FileDB fileDB) { this.files.add(fileDB); }
+
+    public EtatSAV getEtat_sav() { return etat_sav; }
+    public void setEtat_sav(EtatSAV etat_sav) { this.etat_sav = etat_sav; }
 }
