@@ -23,31 +23,17 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-//    @RequestMapping("/login")
-//    public Map<User, String> login(@RequestBody String user) throws JSONException {
-//        User user1 = new User();
-//        Map<User, String> map = new HashMap<>();
-//        JSONObject json = new JSONObject(user);
-//        if (userRepository.findByEmail(json.getString("username")).isPresent()) {
-//            user1 = userRepository.findByEmail(json.getString("username")).get();
-//            map.put(user1, "User exist");
-//            return map;
-//        } else {
-//            map.put(user1, "User not exist");
-//            return map;
-//        }
-//    }
-
     @RequestMapping("/login")
     public User login(@RequestBody String user) throws JSONException {
         User user1 = new User();
         JSONObject json = new JSONObject(user);
         if (userRepository.findByEmail(json.getString("username")).isPresent()) {
             user1 = userRepository.findByEmail(json.getString("username")).get();
-            boolean pass = BCrypt.checkpw(json.getString("username"), user1.getPassword());
+            boolean pass = BCrypt.checkpw(json.getString("password"), user1.getPassword());
             if (!pass) {
                 return new User();
             } else {
+                user1.setPassword(null);
                 return user1;
             }
         } else {

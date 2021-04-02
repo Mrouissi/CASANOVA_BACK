@@ -1,8 +1,6 @@
 package com.istic.casanova.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.istic.casanova.utils.enums.EtatChantier;
-import com.istic.casanova.utils.enums.EtatDossier;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -16,7 +14,7 @@ public class Chantier {
     private Long id;
 
     @OneToOne
-    @JsonManagedReference
+    @JsonBackReference(value = "dossier_chantier")
     private Dossier dossier;
 
 //    @Enumerated(EnumType.STRING)
