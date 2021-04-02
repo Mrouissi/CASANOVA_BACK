@@ -32,6 +32,8 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role;
 
+    private boolean isEnabled;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() { return id; }
@@ -52,4 +54,6 @@ public class User {
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
 
+    public boolean getIsEnabled() { return this.isEnabled; }
+    public void setIsEnabled(boolean isEnabled) { this.isEnabled = isEnabled; }
 }

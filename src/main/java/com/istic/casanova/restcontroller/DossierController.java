@@ -1,7 +1,9 @@
 package com.istic.casanova.restcontroller;
 
+import com.istic.casanova.model.Chantier;
 import com.istic.casanova.model.Dossier;
 import com.istic.casanova.model.FileDB;
+import com.istic.casanova.repository.ChantierRepository;
 import com.istic.casanova.repository.DossierRepository;
 import com.istic.casanova.service.FileStorageService;
 import com.istic.casanova.utils.message.ResponseFile;
@@ -26,6 +28,9 @@ public class DossierController {
 
     @Autowired
     private DossierRepository dossierRepository;
+
+    @Autowired
+    private ChantierRepository chantierRepository;
 
     @Autowired
     private FileStorageService storageService;
@@ -83,4 +88,10 @@ public class DossierController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getNom() + "\"")
                 .body(fileDB.getData());
     }
+
+    @GetMapping("/dossiers/{id}/chantiers")
+    public List<Chantier> getListChantier(@PathVariable Long id) throws NotFoundException {
+        return chantierRepository.findAll();
+    }
+
 }

@@ -1,14 +1,17 @@
 package com.istic.casanova.restcontroller;
 
 import com.istic.casanova.model.Client;
+import com.istic.casanova.model.ConfirmationToken;
 import com.istic.casanova.model.Dossier;
 import com.istic.casanova.model.User;
 import com.istic.casanova.repository.ClientRepository;
 import com.istic.casanova.repository.DossierRepository;
+import com.istic.casanova.service.EmailSenderService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +26,9 @@ public class ClientController {
 
     @Autowired
     private DossierRepository dossierRepository;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @GetMapping("/clients")
     public List<Client> getAllClients() {
@@ -74,6 +80,7 @@ public class ClientController {
             return ResponseEntity.notFound().build();
         client.setId(id);
         clientRepository.save(client);
+        this.sendEmail(client);
         return ResponseEntity.noContent().build();
     }
 
@@ -87,5 +94,16 @@ public class ClientController {
             dossiers = dossierRepository.findDossierByIdClient(id);
         }
         return dossiers;
+    }
+
+    public String sendEmail(Client client) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo("sperdk22@gmail.com");
+        mailMessage.setSubject("Modification Info client ");
+        mailMessage.setFrom("t.lvq22@gmail.com");
+        mailMessage.setText(client.getNom() + "a changé ses infos");
+
+        emailSenderService.sendEmail(mailMessage);
+        return "Email envoyé";
     }
 }
