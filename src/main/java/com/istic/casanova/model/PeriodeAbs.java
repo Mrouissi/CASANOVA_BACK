@@ -1,6 +1,7 @@
-package com.istic.casanova.utils;
+package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.istic.casanova.model.Client;
 
 import javax.persistence.*;
@@ -19,9 +20,13 @@ public class PeriodeAbs {
     private Client client;
 
     @Column(name = "date_debut")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="dd/MM/yyyy")
     Date date_debut;
 
     @Column(name = "date_fin")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="dd/MM/yyyy")
     Date date_fin;
 
     public Long getId() { return id; }

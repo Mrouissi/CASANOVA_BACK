@@ -1,4 +1,4 @@
-package com.istic.casanova.chantier;
+package com.istic.casanova.model;
 import javax.persistence.*;
 
 @Entity

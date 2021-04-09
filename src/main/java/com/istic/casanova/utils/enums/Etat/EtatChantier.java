@@ -1,4 +1,4 @@
-package com.istic.casanova.utils.enums;
+package com.istic.casanova.utils.enums.Etat;
 
 public enum EtatChantier {
 

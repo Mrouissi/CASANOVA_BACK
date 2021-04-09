@@ -1,5 +1,6 @@
 package com.istic.casanova.restcontroller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.istic.casanova.model.Client;
 import com.istic.casanova.model.ConfirmationToken;
 import com.istic.casanova.model.Dossier;
@@ -76,12 +77,17 @@ public class ClientController {
     @PutMapping("/clients/{id}")
     public ResponseEntity<Object> updateClient(@RequestBody Client client, @PathVariable long id) {
         Optional<Client> clientOptional = clientRepository.findById(id);
-        if (clientOptional.isEmpty())
+        if (clientOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
-        client.setId(id);
-        clientRepository.save(client);
-        this.sendEmail(client);
-        return ResponseEntity.noContent().build();
+        } else {
+            String pass = clientOptional.get().getPassword();
+            client.setId(id);
+            client.setPassword(pass);
+            clientRepository.save(client);
+            this.sendEmail(client);
+            return ResponseEntity.noContent().build();
+        }
+
     }
 
     @GetMapping("/clients/{id}/dossiers")
