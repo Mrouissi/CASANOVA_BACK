@@ -1,7 +1,6 @@
 package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.istic.casanova.utils.PeriodeAbs;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,12 +26,6 @@ public class Client extends User {
     @Column(name = "tel_portable")
     private String telPortable;
 
-    @Column(name = "profil")
-    private String profil;
-
-    @Column(name = "profession")
-    private String profession;
-
     @Column(name = "role")
     private final String role = "ROLE_CLIENT";
 
@@ -41,9 +34,6 @@ public class Client extends User {
 
     @JsonManagedReference(value = "client_abs")
     private List<PeriodeAbs> periodes_abs;
-
-//    @JsonManagedReference(value = "client_avis")
-//    private Avis avis;
 
     public String getCivilite() {
         return civilite;
@@ -93,22 +83,6 @@ public class Client extends User {
         this.telPortable = telPortable;
     }
 
-    public String getProfil() {
-        return profil;
-    }
-
-    public void setProfil(String profil) {
-        this.profil = profil;
-    }
-
-    public String getProfession() {
-        return profession;
-    }
-
-    public void setProfession(String profession) {
-        this.profession = profession;
-    }
-
     public String getRole() { return role; }
 
     @OneToMany(mappedBy = "client")
@@ -120,8 +94,4 @@ public class Client extends User {
     @OneToMany(mappedBy = "client")
     public List<PeriodeAbs> getPeriodes_abs() { return periodes_abs; }
     public void setPeriodes_abs(List<PeriodeAbs> periodes_abs) { this.periodes_abs = periodes_abs; }
-
-//    @OneToOne
-//    public Avis getAvis() { return avis; }
-//    public void setAvis(Avis avis) { this.avis = avis; }
 }

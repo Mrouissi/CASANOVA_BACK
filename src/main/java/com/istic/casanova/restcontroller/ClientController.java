@@ -1,5 +1,6 @@
 package com.istic.casanova.restcontroller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.istic.casanova.model.Client;
 import com.istic.casanova.model.ConfirmationToken;
 import com.istic.casanova.model.Dossier;

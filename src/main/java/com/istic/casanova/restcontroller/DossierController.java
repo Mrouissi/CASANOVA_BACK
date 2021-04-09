@@ -3,6 +3,7 @@ package com.istic.casanova.restcontroller;
 import com.istic.casanova.model.Chantier;
 import com.istic.casanova.model.Dossier;
 import com.istic.casanova.model.FileDB;
+import com.istic.casanova.model.User;
 import com.istic.casanova.repository.ChantierRepository;
 import com.istic.casanova.repository.DossierRepository;
 import com.istic.casanova.service.FileStorageService;
@@ -92,6 +93,17 @@ public class DossierController {
     @GetMapping("/dossiers/{id}/chantiers")
     public List<Chantier> getListChantier(@PathVariable Long id) throws NotFoundException {
         return chantierRepository.findAll();
+    }
+
+    @PutMapping("/dossiers/{id}")
+    public ResponseEntity<Object> updateDossier(@RequestBody Dossier dossier, @PathVariable long id) {
+
+        Optional<Dossier> dossierOptional = dossierRepository.findById(id);
+        if (dossierOptional.isEmpty())
+            return ResponseEntity.notFound().build();
+        dossier.setId(id);
+        dossierRepository.save(dossier);
+        return ResponseEntity.noContent().build();
     }
 
 }
