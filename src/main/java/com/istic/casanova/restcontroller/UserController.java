@@ -1,6 +1,5 @@
 package com.istic.casanova.restcontroller;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.istic.casanova.model.User;
 import com.istic.casanova.repository.UserRepository;
 import javassist.NotFoundException;
@@ -12,12 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserController {
 
     @Autowired

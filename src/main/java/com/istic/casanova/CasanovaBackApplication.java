@@ -8,6 +8,7 @@ public class CasanovaBackApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CasanovaBackApplication.class, args);
+
 	}
 
 }
