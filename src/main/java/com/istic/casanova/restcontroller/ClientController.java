@@ -84,7 +84,7 @@ public class ClientController {
             client.setId(id);
             client.setPassword(pass);
             clientRepository.save(client);
-            this.sendEmail(client);
+            emailSenderService.sendEmailModif(client);
             return ResponseEntity.noContent().build();
         }
 
@@ -100,16 +100,5 @@ public class ClientController {
             dossiers = dossierRepository.findDossierByIdClient(id);
         }
         return dossiers;
-    }
-
-    public String sendEmail(Client client) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("sperdk22@gmail.com");
-        mailMessage.setSubject("Modification Info client ");
-        mailMessage.setFrom("t.lvq22@gmail.com");
-        mailMessage.setText(client.getNom() + "a changé ses infos");
-
-        emailSenderService.sendEmail(mailMessage);
-        return "Email envoyé";
     }
 }
