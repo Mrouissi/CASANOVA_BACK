@@ -1,12 +1,13 @@
 package com.istic.casanova.restcontroller;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.istic.casanova.extract.UserExcelExporter;
 import com.istic.casanova.model.Client;
 import com.istic.casanova.model.ConfirmationToken;
 import com.istic.casanova.model.Dossier;
 import com.istic.casanova.model.User;
 import com.istic.casanova.repository.ClientRepository;
 import com.istic.casanova.repository.DossierRepository;
+import com.istic.casanova.service.ClientServices;
 import com.istic.casanova.service.EmailSenderService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
 public class ClientController {
+    @Autowired
+    private ClientServices service;
 
     @Autowired
     private ClientRepository clientRepository;
@@ -84,7 +92,7 @@ public class ClientController {
             client.setId(id);
             client.setPassword(pass);
             clientRepository.save(client);
-            this.sendEmail(client);
+            emailSenderService.sendEmailModif(client);
             return ResponseEntity.noContent().build();
         }
 
@@ -102,14 +110,22 @@ public class ClientController {
         return dossiers;
     }
 
-    public String sendEmail(Client client) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("sperdk22@gmail.com");
-        mailMessage.setSubject("Modification Info client ");
-        mailMessage.setFrom("t.lvq22@gmail.com");
-        mailMessage.setText(client.getNom() + "a changé ses infos");
 
-        emailSenderService.sendEmail(mailMessage);
-        return "Email envoyé";
+    @GetMapping("/client/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Client> listClients = service.listAll();
+
+        UserExcelExporter excelExporter = new UserExcelExporter(listClients);
+
+        excelExporter.export(response);
+
     }
 }

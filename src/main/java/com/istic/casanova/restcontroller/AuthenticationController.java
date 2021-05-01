@@ -37,15 +37,7 @@ public class AuthenticationController {
             ConfirmationToken confirmationToken = new ConfirmationToken(client);
 
             confirmationTokenRepository.save(confirmationToken);
-// A compléter
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setTo();
-            mailMessage.setSubject("Complete Registration!");
-            mailMessage.setFrom("");
-            mailMessage.setText("To confirm your account, please click here : "
-                    +"http://localhost:8080/auth/confirm-account?token="+confirmationToken.getConfirmationToken());
-
-            emailSenderService.sendEmail(mailMessage);
+            emailSenderService.sendEmailConfirmation(client, confirmationToken);
             return "Email envoyé";
         } else {
             return "Aucun client ne correspond à l'email "+email;
