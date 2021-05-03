@@ -19,7 +19,7 @@ public class Chantier {
     @JsonBackReference(value = "dossier_chantier")
     private Dossier dossier;
 
-    @ManyToOne
+    @OneToMany
     @JsonManagedReference(value = "chantier_travaux")
     private Travaux travaux;
 

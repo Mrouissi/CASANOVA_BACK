@@ -54,8 +54,8 @@ public class UserExcelExporter {
 
         ServletOutputStream outputStream = response.getOutputStream();
         workbook.write(outputStream);
-        workbook.close();
         outputStream.close();
+        workbook.close();
 
     }
 }
