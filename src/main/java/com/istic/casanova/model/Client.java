@@ -29,6 +29,7 @@ public class Client extends User {
     @Column(name = "role")
     private final String role = "ROLE_CLIENT";
 
+    @OneToMany(mappedBy = "client")
     @JsonManagedReference(value = "client_dossier")
     private List<Dossier> dossiers;
 

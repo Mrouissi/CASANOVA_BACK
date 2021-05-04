@@ -1,8 +1,9 @@
 package com.istic.casanova.restcontroller;
 
+//import com.istic.casanova.extract.UserExcelExporter;
+
 import com.istic.casanova.extract.UserExcelExporter;
 import com.istic.casanova.model.Client;
-import com.istic.casanova.model.ConfirmationToken;
 import com.istic.casanova.model.Dossier;
 import com.istic.casanova.model.User;
 import com.istic.casanova.repository.ClientRepository;
@@ -13,7 +14,6 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -126,6 +126,5 @@ public class ClientController {
         UserExcelExporter excelExporter = new UserExcelExporter(listClients);
 
         excelExporter.export(response);
-
     }
 }
