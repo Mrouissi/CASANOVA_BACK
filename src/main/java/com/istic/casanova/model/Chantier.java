@@ -23,8 +23,11 @@ public class Chantier {
     @JsonManagedReference(value = "chantier_travaux")
     private Travaux travaux;
 
-    @Enumerated(EnumType.STRING)
-    private EtatChantier etat_chantier;
+//    @Enumerated(EnumType.STRING)
+//    private EtatChantier etat_chantier;
+
+    private String etat_chantier;
+
 
     @Column(name = "code_postal")
     private String code_postal;
@@ -64,8 +67,11 @@ public class Chantier {
         this.dossier = dossier;
     }
 
-    public EtatChantier getEtat_chantier() { return etat_chantier; }
-    public void setEtat_chantier(EtatChantier etat_chantier) { this.etat_chantier = etat_chantier; }
+//    public EtatChantier getEtat_chantier() { return etat_chantier; }
+//    public void setEtat_chantier(EtatChantier etat_chantier) { this.etat_chantier = etat_chantier; }
+
+    public String getEtat_chantier() { return etat_chantier; }
+    public void setEtat_chantier(String etat_chantier) { this.etat_chantier = etat_chantier; }
 
     public String getCode_postal() {
         return code_postal;
