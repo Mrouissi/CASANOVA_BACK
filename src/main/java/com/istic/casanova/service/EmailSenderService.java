@@ -50,6 +50,23 @@ public class EmailSenderService {
         javaMailSender.send(mailMessage);
     }
 
+    /**
+     * Envoi un email de contact
+     * @param client
+     *
+     */
+    @Async
+    public void sendEmailContact(String objet, String message) {
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo("");
+        mailMessage.setSubject(objet);
+        mailMessage.setFrom("");
+        mailMessage.setText(message);
+
+        javaMailSender.send(mailMessage);
+    }
+
 
 
 }

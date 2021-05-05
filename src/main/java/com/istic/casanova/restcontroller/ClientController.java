@@ -3,11 +3,10 @@ package com.istic.casanova.restcontroller;
 //import com.istic.casanova.extract.UserExcelExporter;
 
 import com.istic.casanova.extract.UserExcelExporter;
-import com.istic.casanova.model.Client;
-import com.istic.casanova.model.Dossier;
-import com.istic.casanova.model.User;
+import com.istic.casanova.model.*;
 import com.istic.casanova.repository.ClientRepository;
 import com.istic.casanova.repository.DossierRepository;
+import com.istic.casanova.repository.PeriodeAbsRepository;
 import com.istic.casanova.service.ClientServices;
 import com.istic.casanova.service.EmailSenderService;
 import javassist.NotFoundException;
@@ -35,6 +34,9 @@ public class ClientController {
 
     @Autowired
     private DossierRepository dossierRepository;
+
+    @Autowired
+    private PeriodeAbsRepository periodeAbsRepository;
 
     @Autowired
     private EmailSenderService emailSenderService;
@@ -108,6 +110,31 @@ public class ClientController {
             dossiers = dossierRepository.findDossierByIdClient(id);
         }
         return dossiers;
+    }
+
+    @GetMapping("/clients/{id}/absences")
+    public List<PeriodeAbs> getPeriodeAbs(@PathVariable Long id) throws NotFoundException {
+        Optional<Client> client = clientRepository.findById(id);
+        List<PeriodeAbs> periodeAbs;
+        if(client.isEmpty()) {
+            throw new NotFoundException("Client not found, id : "+id);
+        } else {
+            periodeAbs = periodeAbsRepository.findPeriodeAbsByIdClient(id);
+        }
+        return periodeAbs;
+    }
+
+    @PostMapping("/clients/{id}/absences")
+    public ResponseEntity<String> createPeriodeAbs(@PathVariable Long id, @RequestBody PeriodeAbs periodeAbs) throws NotFoundException {
+        Optional<Client> testClient = clientRepository.findById(id);
+        if(testClient.isEmpty()) {
+            throw new NotFoundException("Client not found, id : " + id);
+        } else {
+            PeriodeAbs savedPeriodeAbs = periodeAbsRepository.save(periodeAbs);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body("PeriodeAbs created");
+        }
     }
 
 
