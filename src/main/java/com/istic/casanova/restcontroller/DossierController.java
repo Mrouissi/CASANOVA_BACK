@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,10 +37,11 @@ public class DossierController {
     @Autowired
     private FileStorageService storageService;
 
-    @PostMapping("/dossiers/{id}/upload")
-    public ResponseEntity<String> uploadFiles(@PathVariable Long id,
-                                              @RequestParam("files") MultipartFile[] files,
-                                              @RequestParam("categories") String[] categories) throws NotFoundException {
+    @PostMapping("/dossiers/{id}/upload/{category}")
+    public ResponseEntity<String> uploadFiles(@PathVariable Long id,@PathVariable String category,
+                                              @RequestParam("file") MultipartFile file
+
+                                             ) throws NotFoundException {
         String message = "";
         Optional<Dossier> dossier = dossierRepository.findById(id);
         if(dossier.isEmpty()) {
@@ -48,11 +50,13 @@ public class DossierController {
         try {
             List<String> fileNames = new ArrayList<>();
             int i = 0;
-            for(MultipartFile file: files) {
-                FileDB fileDB = storageService.store(file, dossier.get(), categories[i]);
+          //  FileDB fileDB = storageService.store(file , "test");
+            fileNames.add(file.getOriginalFilename());
+         /*   for(MultipartFile file: files) {
+               FileDB fileDB = storageService.store(file, 'test');
                 fileNames.add(file.getOriginalFilename());
                 i++;
-            }
+            }*/
             message = "Uploaded the files successfully: " + fileNames;
             return ResponseEntity.status(HttpStatus.OK).body(message);
         } catch (Exception e) {
