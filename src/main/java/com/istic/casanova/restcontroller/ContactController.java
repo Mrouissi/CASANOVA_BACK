@@ -20,14 +20,15 @@ public class ContactController {
     private EmailSenderService emailSenderService;
 
     @PutMapping("/contact")
-    public ResponseEntity<Object> contact(@RequestBody Client client, @RequestParam String objet, @RequestParam String message) {
-        Optional<Client> clientOptional = clientRepository.findById(client.getId());
+    public ResponseEntity<Object> contact(@RequestParam Long client,
+                                          @RequestParam String message) {
+        Optional<Client> clientOptional = clientRepository.findById(client);
         if (clientOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         } else {
-            String message1 = "Prénom : " + client.getPrenom() + "\nNom : " + client.getNom() + " \nEmail : "
-                    + client.getEmail() + "\n" + message;
-            emailSenderService.sendEmailContact(objet, message1);
+           // String message1 = "Prénom : " + client.getPrenom() + "\nNom : " + client.getNom() + " \nEmail : "
+            ///        + client.getEmail() + "\n" + message;
+           // emailSenderService.sendEmailContact(objet, message1);
             return ResponseEntity.noContent().build();
         }
 

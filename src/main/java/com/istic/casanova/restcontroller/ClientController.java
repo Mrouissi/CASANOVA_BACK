@@ -125,12 +125,12 @@ public class ClientController {
     }
 
     @PostMapping("/clients/{id}/absences")
-    public ResponseEntity<String> createPeriodeAbs(@PathVariable Long id, @RequestBody PeriodeAbs periodeAbs) throws NotFoundException {
+    public ResponseEntity<String> createPeriodeAbs(@PathVariable Long id, @RequestBody String periodeAbs) throws NotFoundException {
         Optional<Client> testClient = clientRepository.findById(id);
         if(testClient.isEmpty()) {
             throw new NotFoundException("Client not found, id : " + id);
         } else {
-            PeriodeAbs savedPeriodeAbs = periodeAbsRepository.save(periodeAbs);
+           // PeriodeAbs savedPeriodeAbs = periodeAbsRepository.save(periodeAbs);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("PeriodeAbs created");
