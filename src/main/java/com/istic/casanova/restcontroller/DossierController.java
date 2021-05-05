@@ -21,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -37,10 +38,10 @@ public class DossierController {
     @Autowired
     private FileStorageService storageService;
 
-    @PostMapping("/dossiers/{id}/upload/{category}")
-    public ResponseEntity<String> uploadFiles(@PathVariable Long id,@PathVariable String category,
+    @PostMapping("/dossiers/{id}/upload")
+    public ResponseEntity<String> uploadFiles(@PathVariable Long id,
+                                              @RequestParam("category") String category,
                                               @RequestParam("file") MultipartFile file
-
                                              ) throws NotFoundException {
         String message = "";
         Optional<Dossier> dossier = dossierRepository.findById(id);
@@ -48,19 +49,13 @@ public class DossierController {
             throw new NotFoundException("Dossier not found, id : " + id);
         }
         try {
-            List<String> fileNames = new ArrayList<>();
-            int i = 0;
-          //  FileDB fileDB = storageService.store(file , "test");
-            fileNames.add(file.getOriginalFilename());
-         /*   for(MultipartFile file: files) {
-               FileDB fileDB = storageService.store(file, 'test');
-                fileNames.add(file.getOriginalFilename());
-                i++;
-            }*/
-            message = "Uploaded the files successfully: " + fileNames;
+            FileDB fileDB = storageService.store(file, dossier.get(), category);
+            dossier.get().addFile(fileDB);
+            message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(message);
+
         } catch (Exception e) {
-            message = "Could not upload the files ";
+            message = "Could not upload the file: " + file.getOriginalFilename() + "!";
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
     }
@@ -96,7 +91,20 @@ public class DossierController {
 
     @GetMapping("/dossiers/{id}/chantiers")
     public List<Chantier> getListChantier(@PathVariable Long id) throws NotFoundException {
-        return chantierRepository.findAll();
+        Optional<Dossier> dossier = dossierRepository.findById(id);
+        if(dossier.isEmpty()) {
+            throw new NotFoundException("Dossier not found, id : " + id);
+        }
+        return chantierRepository.findChantiersByIdDossier(dossier.get().getId());
+    }
+
+    @GetMapping("/dossiers/{id}")
+    public Dossier getDossier(@PathVariable Long id) throws NotFoundException {
+        Optional<Dossier> dossier = dossierRepository.findById(id);
+        if(dossier.isEmpty()) {
+            throw new NotFoundException("Dossier not found, id : " + id);
+        }
+        return dossier.get();
     }
 
     @PutMapping("/dossiers/{id}")

@@ -26,9 +26,10 @@ public class ContactController {
         if (clientOptional.isEmpty()) {
             return ResponseEntity.notFound().build();
         } else {
-           // String message1 = "Prénom : " + client.getPrenom() + "\nNom : " + client.getNom() + " \nEmail : "
-            ///        + client.getEmail() + "\n" + message;
-           // emailSenderService.sendEmailContact(objet, message1);
+            Client client1 = clientOptional.get();
+            String message1 = "Prénom : " + client1.getPrenom() + "\nNom : " + client1.getNom() + " \nEmail : "
+            + client1.getEmail() + "\n" + message;
+            emailSenderService.sendEmailContact(message1);
             return ResponseEntity.noContent().build();
         }
 

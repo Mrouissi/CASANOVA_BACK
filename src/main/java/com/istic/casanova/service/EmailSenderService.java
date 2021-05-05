@@ -56,11 +56,11 @@ public class EmailSenderService {
      *
      */
     @Async
-    public void sendEmailContact(String objet, String message) {
+    public void sendEmailContact(String message) {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo("");
-        mailMessage.setSubject(objet);
+        mailMessage.setSubject("Contact Interface");
         mailMessage.setFrom("");
         mailMessage.setText(message);
 
