@@ -1,9 +1,6 @@
 package com.istic.casanova.restcontroller;
 
-import com.istic.casanova.model.Chantier;
-import com.istic.casanova.model.Dossier;
-import com.istic.casanova.model.FileDB;
-import com.istic.casanova.model.User;
+import com.istic.casanova.model.*;
 import com.istic.casanova.repository.ChantierRepository;
 import com.istic.casanova.repository.DossierRepository;
 import com.istic.casanova.service.FileStorageService;
@@ -105,6 +102,26 @@ public class DossierController {
             throw new NotFoundException("Dossier not found, id : " + id);
         }
         return dossier.get();
+    }
+
+    @PostMapping("/dossiers/{id}")
+    public ResponseEntity<Object> createDossier(@RequestBody Dossier dossier) {
+        Client client = null;
+        try {
+            client = dossier.getClient();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(client == null) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Empty client");
+        } else {
+            Dossier savedDossier = dossierRepository.save(dossier);
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body("Dossier created");
+        }
     }
 
     @PutMapping("/dossiers/{id}")

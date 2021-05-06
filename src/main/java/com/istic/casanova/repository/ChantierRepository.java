@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ChantierRepository extends JpaRepository<Chantier, Long>{
-    @Query("SELECT c FROM chantier c WHERE c.dossier.id = ?1")
+    @Query("SELECT c FROM Chantier c WHERE c.dossier.id = ?1")
     List<Chantier> findChantiersByIdDossier(Long dossier_id);
 }

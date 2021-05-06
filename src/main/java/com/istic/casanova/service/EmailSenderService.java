@@ -52,7 +52,7 @@ public class EmailSenderService {
 
     /**
      * Envoi un email de contact
-     * @param client
+     * @param message
      *
      */
     @Async
