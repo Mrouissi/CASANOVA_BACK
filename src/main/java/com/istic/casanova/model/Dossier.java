@@ -51,6 +51,14 @@ public class Dossier {
     @Enumerated(EnumType.STRING)
     private EtatSAV etat_sav;
 
+    public String getMsg_sav() {
+        return msg_sav;
+    }
+
+    public void setMsg_sav(String msg_sav) {
+        this.msg_sav = msg_sav;
+    }
+
     @Column(name = "msg_sav")
     private String msg_sav;
 

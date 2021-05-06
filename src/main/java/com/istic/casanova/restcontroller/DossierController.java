@@ -1,10 +1,8 @@
 package com.istic.casanova.restcontroller;
 
-import com.istic.casanova.model.Chantier;
-import com.istic.casanova.model.Dossier;
-import com.istic.casanova.model.FileDB;
-import com.istic.casanova.model.User;
+import com.istic.casanova.model.*;
 import com.istic.casanova.repository.ChantierRepository;
+import com.istic.casanova.repository.ClientRepository;
 import com.istic.casanova.repository.DossierRepository;
 import com.istic.casanova.service.FileStorageService;
 import com.istic.casanova.utils.message.ResponseFile;
@@ -37,6 +35,9 @@ public class DossierController {
 
     @Autowired
     private FileStorageService storageService;
+
+    @Autowired
+    private ClientRepository clientRepository;
 
     @PostMapping("/dossiers/{id}/upload")
     public ResponseEntity<String> uploadFiles(@PathVariable Long id,
@@ -107,13 +108,16 @@ public class DossierController {
         return dossier.get();
     }
 
-    @PutMapping("/dossiers/{id}")
-    public ResponseEntity<Object> updateDossier(@RequestBody Dossier dossier, @PathVariable long id) {
+    @PutMapping("/dossiers/{id}/{idClient}")
+    public ResponseEntity<Object> updateDossier(@RequestBody Dossier dossier, @PathVariable long id ,
+                                                @PathVariable long idClient) {
 
         Optional<Dossier> dossierOptional = dossierRepository.findById(id);
+        Optional<Client> client = clientRepository.findById(idClient);
         if (dossierOptional.isEmpty())
             return ResponseEntity.notFound().build();
         dossier.setId(id);
+        dossier.setClient(client.get());
         dossierRepository.save(dossier);
         return ResponseEntity.noContent().build();
     }
