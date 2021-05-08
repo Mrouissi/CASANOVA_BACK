@@ -2,11 +2,13 @@ package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.istic.casanova.model.Client;
 
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Entité PeriodeAbs : Permet de déclarer une période entre deux dates dans laquelle le client n'est pas disponible.
+ */
 @Entity
 public class PeriodeAbs {
 
@@ -15,6 +17,9 @@ public class PeriodeAbs {
     @Column(name = "periode_abs_id")
     private Long id;
 
+    /**
+     * Client lié
+     */
     @ManyToOne
     @JsonBackReference(value = "client_abs")
     private Client client;

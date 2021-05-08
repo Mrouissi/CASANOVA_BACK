@@ -118,7 +118,7 @@ public class DossierController {
         }
         if(client == null) {
             return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Empty client");
         } else {
             Dossier savedDossier = dossierRepository.save(dossier);

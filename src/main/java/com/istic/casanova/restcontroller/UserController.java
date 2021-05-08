@@ -21,6 +21,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Login
+     * @param user
+     * @return info user
+     * @throws JSONException
+     */
     @RequestMapping("/login")
     public User login(@RequestBody String user) throws JSONException {
         User user1 = new User();
@@ -39,11 +45,21 @@ public class UserController {
         }
     }
 
+    /**
+     *
+     * @return liste users
+     */
     @GetMapping("/users")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return user
+     * @throws NotFoundException
+     */
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable Long id) throws NotFoundException {
         Optional<User> user = userRepository.findById(id);
@@ -53,6 +69,12 @@ public class UserController {
         return user.get();
     }
 
+    /**
+     *
+     * @param email
+     * @return user
+     * @throws NotFoundException
+     */
     @GetMapping("/users/mail/{email}")
     public User getUserByEmail(@PathVariable String email) throws NotFoundException {
         Optional<User> user = userRepository.findByEmail(email);
@@ -62,6 +84,10 @@ public class UserController {
         return user.get();
     }
 
+    /**
+     * Supprime user
+     * @param id
+     */
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable long id) {
         userRepository.deleteById(id);
@@ -82,6 +108,13 @@ public class UserController {
         }
     }
 
+
+    /**
+     * Mise a jour User
+     * @param user
+     * @param id
+     * @return reponse
+     */
     @PutMapping("/users/{id}")
     public ResponseEntity<Object> updateUser(@RequestBody User user, @PathVariable long id) {
 

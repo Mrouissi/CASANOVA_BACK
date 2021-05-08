@@ -2,10 +2,12 @@ package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.istic.casanova.utils.enums.Etat.EtatChantier;
 
 import javax.persistence.*;
 
+/**
+ * Entité Chantier : Contient les informations d'un chantier.
+ */
 @Entity
 @Table(name = "chantier")
 public class Chantier {
@@ -15,19 +17,27 @@ public class Chantier {
     @Column(name = "chantier_id")
     private Long id;
 
+    /**
+     * Dossier lié au Chantier
+     */
     @OneToOne
     @JsonBackReference(value = "dossier_chantier")
     private Dossier dossier;
 
+    /**
+     * Travaux liés au Chantier
+     */
     @OneToMany
     @JsonManagedReference(value = "chantier_travaux")
     private Travaux travaux;
 
-//    @Enumerated(EnumType.STRING)
-//    private EtatChantier etat_chantier;
-
+    /**
+     * État d'avancement
+     */
     private String etat_chantier;
 
+
+    /* Infos Chantier*/
 
     @Column(name = "code_postal")
     private String code_postal;
@@ -66,9 +76,6 @@ public class Chantier {
     public void setDossier(Dossier dossier) {
         this.dossier = dossier;
     }
-
-//    public EtatChantier getEtat_chantier() { return etat_chantier; }
-//    public void setEtat_chantier(EtatChantier etat_chantier) { this.etat_chantier = etat_chantier; }
 
     public String getEtat_chantier() { return etat_chantier; }
     public void setEtat_chantier(String etat_chantier) { this.etat_chantier = etat_chantier; }

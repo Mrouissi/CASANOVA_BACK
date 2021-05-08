@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * Entité Client : Hérite de User
+ */
 @Entity
 public class Client extends User {
 
@@ -29,10 +32,16 @@ public class Client extends User {
     @Column(name = "role")
     private final String role = "ROLE_CLIENT";
 
+    /**
+     * Dossier lié au client
+     */
     @OneToMany(mappedBy = "client")
     @JsonManagedReference(value = "client_dossier")
     private List<Dossier> dossiers;
 
+    /**
+     * Périodes d'abscences liées au Client
+     */
     @JsonManagedReference(value = "client_abs")
     private List<PeriodeAbs> periodes_abs;
 

@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
+/**
+ * Entité Travaux : Contient les informations de travaux.
+ */
 @Entity
 public class Travaux {
 
@@ -13,6 +16,9 @@ public class Travaux {
     @Column(name = "travaux_id")
     private Long id;
 
+    /**
+     * Chantier lié aux Travaux
+     */
     @ManyToOne
     @JsonBackReference(value = "chantier_travaux")
     private Chantier chantier;

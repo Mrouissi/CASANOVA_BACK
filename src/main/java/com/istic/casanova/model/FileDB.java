@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
+
+/**
+ * Entité FileDB : Permet de gérer l'enregistrement de Fichier
+ */
 @Entity
 public class FileDB {
 

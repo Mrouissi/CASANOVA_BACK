@@ -134,6 +134,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>casanova-back</finalName>
 		<testResources>
 			<testResource>
 				<directory>src/main/test</directory>

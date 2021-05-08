@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
+/**
+ * Entité ConfirmationToken : Permet de générer un token de confirmation pour la validation d'un espace client
+ */
 @Entity
 public class ConfirmationToken {
 

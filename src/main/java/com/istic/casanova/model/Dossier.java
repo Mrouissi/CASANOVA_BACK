@@ -11,8 +11,14 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Entité Dossier : relie un Client à un Chantier.
+ * Contient des informations à afficher pour l'interface client.
+ * Contient des informations réutilisés uniquement dans la génération de fichiers Excel.
+ */
 @Entity
 public class Dossier {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,14 +56,6 @@ public class Dossier {
 
     @Enumerated(EnumType.STRING)
     private EtatSAV etat_sav;
-
-    public String getMsg_sav() {
-        return msg_sav;
-    }
-
-    public void setMsg_sav(String msg_sav) {
-        this.msg_sav = msg_sav;
-    }
 
     @Column(name = "msg_sav")
     private String msg_sav;
@@ -419,5 +417,13 @@ public class Dossier {
 
     public void setPct_vendeur3(String pct_vendeur3) {
         this.pct_vendeur3 = pct_vendeur3;
+    }
+
+    public String getMsg_sav() {
+        return msg_sav;
+    }
+
+    public void setMsg_sav(String msg_sav) {
+        this.msg_sav = msg_sav;
     }
 }

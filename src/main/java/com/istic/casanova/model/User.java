@@ -5,6 +5,9 @@ import com.istic.casanova.validator.annotation.UniqueEmail;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Entité User : contient les informations de bases d'un utilisateur
+ */
 @Entity
 @Table(name = "user")
 @Inheritance(strategy= InheritanceType.JOINED)

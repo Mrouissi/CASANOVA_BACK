@@ -3,6 +3,9 @@ package com.istic.casanova.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+/**
+ * Entité Admin : Hérite de User
+ */
 @Entity
 public class Admin extends User {
 

@@ -29,6 +29,10 @@ public class AuthenticationController {
     @Autowired
     private EmailSenderService emailSenderService;
 
+    /**
+     * Envoie d'un email de confirmation
+     * @param email
+     */
     @GetMapping("/validate_user")
     public String sendValidationEmail(@RequestParam String email) {
         Optional<Client> optionalClient = clientRepository.findByEmail(email);
@@ -44,6 +48,10 @@ public class AuthenticationController {
         }
     }
 
+    /**
+     * Permet la confirmation d'un compte client en fonction du token en parametre
+     * @param confirmationToken
+     */
     @GetMapping(value="/confirm-account")
     public String confirmUserAccount(@RequestParam("token")String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);

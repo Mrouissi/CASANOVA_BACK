@@ -19,11 +19,21 @@ public class CommercialController {
     @Autowired
     private CommercialRepository commercialRepository;
 
+    /**
+     *
+     * @return liste commerciaux
+     */
     @GetMapping("/commercials")
     public List<Commercial> getAllCommercials() {
         return commercialRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return commercial
+     * @throws NotFoundException
+     */
     @GetMapping("/commercials/{id}")
     public Commercial getCommercialsById(@PathVariable Long id) throws NotFoundException {
         Optional<Commercial> commercial = commercialRepository.findById(id);
@@ -33,6 +43,12 @@ public class CommercialController {
         return commercial.get();
     }
 
+    /**
+     *
+     * @param email
+     * @return commercial
+     * @throws NotFoundException
+     */
     @GetMapping("/commercials/mail/{email}")
     public Commercial getCommercialByEmail(@PathVariable String email) throws NotFoundException {
         Optional<Commercial> commercial = commercialRepository.findByEmail(email);
@@ -42,11 +58,20 @@ public class CommercialController {
         return commercial.get();
     }
 
+    /**
+     * Supprime commercial
+     * @param id
+     */
     @DeleteMapping("/commercials/{id}")
     public void deleteCommercial(@PathVariable long id) {
         commercialRepository.deleteById(id);
     }
 
+    /**
+     *  Création commercial
+     * @param commercial
+     * @return reponse
+     */
     @PostMapping("/commercials")
     public ResponseEntity<String> createCommercial(@RequestBody Commercial commercial) {
         Optional<Commercial> testCommercial = commercialRepository.findByEmail(commercial.getEmail());
@@ -61,6 +86,12 @@ public class CommercialController {
                     .body("Email already use");
         }    }
 
+    /**
+     * Mise à jour commercial
+     * @param commercial
+     * @param id
+     * @return
+     */
     @PutMapping("/commercials/{id}")
     public ResponseEntity<Object> updateCommercial(@RequestBody Commercial commercial, @PathVariable long id) {
         Optional<Commercial> commercialOptional = commercialRepository.findById(id);

@@ -20,6 +20,12 @@ public class ContactController {
     @Autowired
     private EmailSenderService emailSenderService;
 
+    /**
+     * Envoie mail de client
+     * @param client
+     * @param message
+     * @return reponse
+     */
     @PostMapping("/contact")
     public ResponseEntity<Object> contact(@RequestParam Long client,
                                           @RequestParam String message) {

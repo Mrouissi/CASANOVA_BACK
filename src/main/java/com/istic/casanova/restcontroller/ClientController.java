@@ -1,7 +1,5 @@
 package com.istic.casanova.restcontroller;
 
-//import com.istic.casanova.extract.UserExcelExporter;
-
 import com.istic.casanova.extract.UserExcelExporter;
 import com.istic.casanova.model.*;
 import com.istic.casanova.repository.ClientRepository;
@@ -41,11 +39,21 @@ public class ClientController {
     @Autowired
     private EmailSenderService emailSenderService;
 
+    /**
+     *
+     * @return liste clients
+     */
     @GetMapping("/clients")
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return client
+     * @throws NotFoundException
+     */
     @GetMapping("/clients/{id}")
     public Client getClientsById(@PathVariable Long id) throws NotFoundException {
         Optional<Client> client = clientRepository.findById(id);
@@ -55,6 +63,12 @@ public class ClientController {
         return client.get();
     }
 
+    /**
+     *
+     * @param email
+     * @return client
+     * @throws NotFoundException
+     */
     @GetMapping("/clients/mail/{email}")
     public Client getClientByEmail(@PathVariable String email) throws NotFoundException {
         Optional<Client> client = clientRepository.findByEmail(email);
@@ -64,11 +78,20 @@ public class ClientController {
         return client.get();
     }
 
+    /**
+     * Supprime client
+     * @param id
+     */
     @DeleteMapping("/clients/{id}")
     public void deleteClient(@PathVariable long id) {
         clientRepository.deleteById(id);
     }
 
+    /**
+     * Créer client
+     * @param client
+     * @return reponse
+     */
     @PostMapping("/clients")
     public ResponseEntity<String> createClient(@RequestBody Client client) {
         Optional<Client> testClient = clientRepository.findByEmail(client.getEmail());
@@ -84,6 +107,12 @@ public class ClientController {
         }
     }
 
+    /**
+     * Modifier client
+     * @param client
+     * @param id
+     * @return reponse
+     */
     @PutMapping("/clients/{id}")
     public ResponseEntity<Object> updateClient(@RequestBody Client client, @PathVariable long id) {
         Optional<Client> clientOptional = clientRepository.findById(id);
@@ -100,6 +129,12 @@ public class ClientController {
 
     }
 
+    /**
+     *
+     * @param id
+     * @return liste des dossiers d'un client
+     * @throws NotFoundException
+     */
     @GetMapping("/clients/{id}/dossiers")
     public List<Dossier> getDossiersByIdClient(@PathVariable Long id) throws NotFoundException {
         Optional<Client> client = clientRepository.findById(id);
@@ -112,6 +147,12 @@ public class ClientController {
         return dossiers;
     }
 
+    /**
+     *
+     * @param id
+     * @return la liste des periodes d'absences
+     * @throws NotFoundException
+     */
     @GetMapping("/clients/{id}/absences")
     public List<PeriodeAbs> getPeriodeAbs(@PathVariable Long id) throws NotFoundException {
         Optional<Client> client = clientRepository.findById(id);
@@ -124,6 +165,13 @@ public class ClientController {
         return periodeAbs;
     }
 
+    /**
+     * creation d'une periode d'absence
+     * @param id
+     * @param periodeAbs
+     * @return reponse
+     * @throws NotFoundException
+     */
     @PostMapping("/clients/{id}/absences")
     public ResponseEntity<String> createPeriodeAbs(@PathVariable Long id, @RequestBody String periodeAbs) throws NotFoundException {
         Optional<Client> testClient = clientRepository.findById(id);
@@ -137,7 +185,11 @@ public class ClientController {
         }
     }
 
-
+    /**
+     * Génére fichier excel
+     * @param response
+     * @throws IOException
+     */
     @GetMapping("/client/export/excel")
     public void exportToExcel(HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");

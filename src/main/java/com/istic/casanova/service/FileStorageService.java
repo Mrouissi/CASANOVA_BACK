@@ -19,6 +19,14 @@ public class FileStorageService {
     @Autowired
     private FileDBRepository fileDBRepository;
 
+    /**
+     * Enregistrement fichier
+     * @param file
+     * @param dossier
+     * @param categorie
+     * @return
+     * @throws IOException
+     */
     public FileDB store(MultipartFile file, Dossier dossier, String categorie) throws IOException {
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
         FileDB fileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
