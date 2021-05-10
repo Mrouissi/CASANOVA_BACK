@@ -3,6 +3,7 @@ package com.istic.casanova.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,9 @@ public class Client extends User {
 
     @Column(name = "code_postal")
     private String code_postal;
+
+    @Column(name ="departement")
+    private String dpt;
 
     @Column(name = "adresse")
     private String adresse;
@@ -37,7 +41,7 @@ public class Client extends User {
      */
     @OneToMany(mappedBy = "client")
     @JsonManagedReference(value = "client_dossier")
-    private List<Dossier> dossiers;
+    private List<Dossier> dossiers = new ArrayList<>();
 
     /**
      * Périodes d'abscences liées au Client
@@ -94,6 +98,11 @@ public class Client extends User {
     }
 
     public String getRole() { return role; }
+
+    public String getDpt() {return dpt;}
+
+    public void setDpt(String dpt) {this.dpt = dpt;}
+
 
     @OneToMany(mappedBy = "client")
     public List<Dossier> getDossiers() {

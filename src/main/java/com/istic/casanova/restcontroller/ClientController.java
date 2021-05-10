@@ -196,13 +196,10 @@ public class ClientController {
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=users_" + currentDateTime + ".xlsx";
+        String headerValue = "attachment; filename=Clients_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
-
         List<Client> listClients = service.listAll();
-
         UserExcelExporter excelExporter = new UserExcelExporter(listClients);
-
         excelExporter.export(response);
     }
 }
