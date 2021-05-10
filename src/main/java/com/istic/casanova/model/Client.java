@@ -31,7 +31,7 @@ public class Client extends User {
     private String tel_fixe;
 
     @Column(name = "tel_portable")
-    private String telPortable;
+    private String tel_portable;
 
     @Column(name = "role")
     private final String role = "ROLE_CLIENT";
@@ -89,12 +89,12 @@ public class Client extends User {
         this.tel_fixe = tel_fixe;
     }
 
-    public String getTelPortable() {
-        return telPortable;
+    public String getTel_portable() {
+        return tel_portable;
     }
 
-    public void setTelPortable(String telPortable) {
-        this.telPortable = telPortable;
+    public void setTel_portable(String tel_portable) {
+        this.tel_portable = tel_portable;
     }
 
     public String getRole() { return role; }

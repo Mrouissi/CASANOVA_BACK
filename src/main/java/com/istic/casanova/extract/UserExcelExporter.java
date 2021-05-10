@@ -65,7 +65,7 @@ public class UserExcelExporter {
             row.createCell(4).setCellValue(client.getDpt());
             row.createCell(5).setCellValue(client.getVille());
             row.createCell(6).setCellValue(client.getTel_fixe());
-            row.createCell(7).setCellValue(client.getTelPortable());
+            row.createCell(7).setCellValue(client.getTel_portable());
             row.createCell(8).setCellValue(client.getEmail());
 
             List<Dossier> dossiers= client.getDossiers();

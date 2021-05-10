@@ -25,7 +25,7 @@ public class EmailSenderService {
     @Async
     public void sendEmailModif(Client client) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("");
+        mailMessage.setTo("admin@test.com");
         mailMessage.setSubject("Modification Info client ");
         mailMessage.setFrom("");
         mailMessage.setText(client.getNom() + "a changé ses infos");
@@ -61,6 +61,23 @@ public class EmailSenderService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo("");
         mailMessage.setSubject("Contact Interface");
+        mailMessage.setFrom("");
+        mailMessage.setText(message);
+
+        javaMailSender.send(mailMessage);
+    }
+
+    /**
+     * Envoi un email de contact
+     * @param message
+     *
+     */
+    @Async
+    public void sendEmailAbs(String message) {
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo("");
+        mailMessage.setSubject("Déclaraction période d'absence");
         mailMessage.setFrom("");
         mailMessage.setText(message);
 

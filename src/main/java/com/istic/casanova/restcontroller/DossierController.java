@@ -4,6 +4,7 @@ import com.istic.casanova.model.*;
 import com.istic.casanova.repository.ChantierRepository;
 import com.istic.casanova.repository.ClientRepository;
 import com.istic.casanova.repository.DossierRepository;
+import com.istic.casanova.service.EmailSenderService;
 import com.istic.casanova.service.FileStorageService;
 import com.istic.casanova.utils.message.ResponseFile;
 import com.istic.casanova.utils.message.ResponseMessage;
@@ -38,6 +39,9 @@ public class DossierController {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @PostMapping("/dossiers/{id}/upload")
     public ResponseEntity<String> uploadFiles(@PathVariable Long id,

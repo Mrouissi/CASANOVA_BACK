@@ -120,8 +120,10 @@ public class ClientController {
             return ResponseEntity.notFound().build();
         } else {
             String pass = clientOptional.get().getPassword();
+            Boolean is_enable = clientOptional.get().getIsEnabled();
             client.setId(id);
             client.setPassword(pass);
+            client.setIsEnabled(is_enable);
             clientRepository.save(client);
             emailSenderService.sendEmailModif(client);
             return ResponseEntity.noContent().build();
@@ -173,12 +175,14 @@ public class ClientController {
      * @throws NotFoundException
      */
     @PostMapping("/clients/{id}/absences")
-    public ResponseEntity<String> createPeriodeAbs(@PathVariable Long id, @RequestBody String periodeAbs) throws NotFoundException {
+    public ResponseEntity<String> createPeriodeAbs(@PathVariable Long id, @RequestBody PeriodeAbs periodeAbs) throws NotFoundException {
         Optional<Client> testClient = clientRepository.findById(id);
         if(testClient.isEmpty()) {
             throw new NotFoundException("Client not found, id : " + id);
         } else {
-           // PeriodeAbs savedPeriodeAbs = periodeAbsRepository.save(periodeAbs);
+           PeriodeAbs savedPeriodeAbs = periodeAbsRepository.save(periodeAbs);
+            emailSenderService.sendEmailAbs("Client " + testClient.get().getNom() + " " +testClient.get().getPrenom()+".\n"
+                                            + "Période d'absence du " + periodeAbs.getDate_debut() +" au "+ periodeAbs.getDate_fin());
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("PeriodeAbs created");
