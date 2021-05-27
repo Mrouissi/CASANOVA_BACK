@@ -182,7 +182,7 @@ public class ClientController {
         } else {
            PeriodeAbs savedPeriodeAbs = periodeAbsRepository.save(periodeAbs);
             emailSenderService.sendEmailAbs("Client " + testClient.get().getNom() + " " +testClient.get().getPrenom()+".\n"
-                                            + "Période d'absence du " + periodeAbs.getDate_debut() +" au "+ periodeAbs.getDate_fin());
+                                            + "Période d'absence du " + periodeAbs.getDate_debut() +" au "+ periodeAbs.getDate_fin(), testClient.get().getEmail());
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("PeriodeAbs created");

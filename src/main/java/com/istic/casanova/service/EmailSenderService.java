@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class EmailSenderService {
 
     private JavaMailSender javaMailSender;
+    private final String sendFromMail = "";
 
     @Autowired
     public EmailSenderService(JavaMailSender javaMailSender) {
@@ -25,9 +26,9 @@ public class EmailSenderService {
     @Async
     public void sendEmailModif(Client client) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("admin@test.com");
+        mailMessage.setTo(client.getEmail());
         mailMessage.setSubject("Modification Info client ");
-        mailMessage.setFrom("");
+        mailMessage.setFrom(sendFromMail);
         mailMessage.setText(client.getNom() + "a changé ses infos");
         javaMailSender.send(mailMessage);
     }
@@ -43,7 +44,7 @@ public class EmailSenderService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(client.getEmail());
         mailMessage.setSubject("Vérifier votre compte Label France Toiture !");
-        mailMessage.setFrom("");
+        mailMessage.setFrom(sendFromMail);
         mailMessage.setText("Cliquez ici pour confirmer votre compte : "
                 +"http://localhost:8080/auth/confirm-account?token="+confirmationToken.getConfirmationToken());
 
@@ -56,12 +57,12 @@ public class EmailSenderService {
      *
      */
     @Async
-    public void sendEmailContact(String message) {
+    public void sendEmailContact(String message, String mail) {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("");
+        mailMessage.setTo(mail);
         mailMessage.setSubject("Contact Interface");
-        mailMessage.setFrom("");
+        mailMessage.setFrom(sendFromMail);
         mailMessage.setText(message);
 
         javaMailSender.send(mailMessage);
@@ -73,12 +74,12 @@ public class EmailSenderService {
      *
      */
     @Async
-    public void sendEmailAbs(String message) {
+    public void sendEmailAbs(String message, String mail) {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo("");
+        mailMessage.setTo(mail);
         mailMessage.setSubject("Déclaraction période d'absence");
-        mailMessage.setFrom("");
+        mailMessage.setFrom(sendFromMail);
         mailMessage.setText(message);
 
         javaMailSender.send(mailMessage);

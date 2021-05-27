@@ -36,7 +36,7 @@ public class ContactController {
             Client client1 = clientOptional.get();
             String message1 = "Prénom : " + client1.getPrenom() + "\nNom : " + client1.getNom() + " \nEmail : "
             + client1.getEmail() + "\n" + message;
-            emailSenderService.sendEmailContact(message1);
+            emailSenderService.sendEmailContact(message1, client1.getEmail());
             return ResponseEntity.status(HttpStatus.OK).body("Message send");
         }
 
