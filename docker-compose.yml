@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  backendserver:
+    springboot-docker-container:
+      image: springboot-docker-container
+      container_name: springboot-docker-container
+      ports:
+        - 8080:8080
+      build:
+        context: ./
+        dockerfile: Dockerfile
+      restart: always
