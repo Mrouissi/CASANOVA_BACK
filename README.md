@@ -40,3 +40,6 @@ sont à compléter. On peut aussi changer les autres infos car le stmp de gmail 
 
 Dans la classe EmailSenderService on veut aussi remplir la constante 'sendFromMail' qui doit être le mail utilisé pour envoyé les mails.
 
+## BDD
+Une fois la bdd générer par Spring, on peut y créer les comptes.
+Pour entrer directement un mot de passe il faut le crypter avec [bcrypt](https://www.bcrypt.fr/)
