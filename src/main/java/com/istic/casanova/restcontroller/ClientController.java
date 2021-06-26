@@ -92,6 +92,8 @@ public class ClientController {
      * @param client
      * @return reponse
      */
+
+    //créer un client
     @PostMapping("/clients")
     public ResponseEntity<String> createClient(@RequestBody Client client) {
         Optional<Client> testClient = clientRepository.findByEmail(client.getEmail());
@@ -202,7 +204,7 @@ public class ClientController {
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=Clients_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
-        List<Client> listClients = service.listAll();
+        List<Client> listClients = getAllClients();
         UserExcelExporter excelExporter = new UserExcelExporter(listClients);
         excelExporter.export(response);
     }

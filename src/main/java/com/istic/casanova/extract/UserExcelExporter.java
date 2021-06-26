@@ -2,13 +2,11 @@ package com.istic.casanova.extract;
 
 import com.istic.casanova.model.Client;
 import com.istic.casanova.model.Dossier;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.formula.FormulaType;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
@@ -74,7 +72,7 @@ public class UserExcelExporter {
                 row.createCell(10).setCellValue(dossier.getEntite_vente());
                 row.createCell(11).setCellValue(dossier.getNum_bon());
                 row.createCell(12).setCellValue(dossier.getDate_commande());
-                //row.createCell(13).setCellFormula("IF(M3=,M3)");
+                row.createCell(13).setCellFormula("SI(AH3=\"\";\"\";AH3)");
                 row.createCell(14).setCellValue(dossier.getDate_reception());
                 //row.createCell(15).setCellFormula();
                 row.createCell(16).setCellValue(dossier.getOrganisme()); // verifier origine
@@ -95,7 +93,7 @@ public class UserExcelExporter {
                 //row.createCell(31).setCellFormula(%acompte);
                 row.createCell(32).setCellValue(dossier.getMontant_acompte());
                 row.createCell(33).setCellValue(dossier.getDate_encaissement());
-                //row.createCell(34).setFormula(mois);
+                //row.createCell(34).setCellFormula("SI(AH3=\"\";\"\";AH3)");
                 //row.createCell(35).setCellValue(début);
                 //row.createCell(36).setCellValue(dossier.reception);
                 //row.createCell(37).setCellValue(M+1);

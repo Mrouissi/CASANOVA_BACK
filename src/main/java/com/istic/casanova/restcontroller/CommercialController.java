@@ -1,11 +1,9 @@
 package com.istic.casanova.restcontroller;
 
 import com.istic.casanova.model.Commercial;
-import com.istic.casanova.model.User;
 import com.istic.casanova.repository.CommercialRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +23,7 @@ public class CommercialController {
      */
     @GetMapping("/commercials")
     public List<Commercial> getAllCommercials() {
+
         return commercialRepository.findAll();
     }
 
@@ -70,21 +69,22 @@ public class CommercialController {
     /**
      *  Création commercial
      * @param commercial
-     * @return reponse
+     * @return commercial
      */
     @PostMapping("/commercials")
-    public ResponseEntity<String> createCommercial(@RequestBody Commercial commercial) {
-        Optional<Commercial> testCommercial = commercialRepository.findByEmail(commercial.getEmail());
-        if (testCommercial.isEmpty()) {
-            User savedUser = commercialRepository.save(commercial);
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body("User created");
-        } else {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body("Email already use");
-        }    }
+    public Commercial createCommercial(@RequestBody Commercial commercial) throws Exception {
+        String tempEmail = commercial.getEmail();
+        if (tempEmail != null && !"".equals(tempEmail)) {
+            Optional<Commercial> testCommercial = commercialRepository.findByEmail(tempEmail);
+            if (!testCommercial.isEmpty()) {
+                throw new Exception("le commercial avec " + tempEmail + " existe déjà.");
+            }
+
+        }
+        Commercial savedCommercial = new Commercial();
+        savedCommercial = commercialRepository.save(commercial);
+        return savedCommercial;
+    }
 
     /**
      * Mise à jour commercial

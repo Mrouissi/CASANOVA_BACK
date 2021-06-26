@@ -35,14 +35,10 @@ public class UserController {
             user1 = userRepository.findByEmail(json.getString("username")).get();
             boolean pass = BCrypt.checkpw(json.getString("password"), user1.getPassword());
             if (!pass) {
-                return new User();
-            } else {
-                user1.setPassword(null);
-                return user1;
+                throw new JSONException("bad credentials");
             }
-        } else {
-            return user1;
         }
+        return user1;
     }
 
     /**

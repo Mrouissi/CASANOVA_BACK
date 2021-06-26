@@ -16,9 +16,7 @@ public class ClientServices {
         private ClientRepository repo;
 
         public List<Client> listAll() {
-
             return repo.findAll();
-
         }
 
 }

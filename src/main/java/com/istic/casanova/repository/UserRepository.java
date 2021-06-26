@@ -5,4 +5,5 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface UserRepository extends AbstractRepository<User>{
+    public User findByEmailAndPassword(String email, String password);
 }
