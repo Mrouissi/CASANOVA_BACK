@@ -31,8 +31,8 @@ public class UserController {
     public User login(@RequestBody String user) throws JSONException {
         User user1 = new User();
         JSONObject json = new JSONObject(user);
-        if (userRepository.findByEmail(json.getString("username")).isPresent()) {
-            user1 = userRepository.findByEmail(json.getString("username")).get();
+        if (userRepository.findByEmail(json.getString("email")).isPresent()) {
+            user1 = userRepository.findByEmail(json.getString("email")).get();
             boolean pass = BCrypt.checkpw(json.getString("password"), user1.getPassword());
             if (!pass) {
                 throw new JSONException("bad credentials");
@@ -103,7 +103,6 @@ public class UserController {
                     .body("Email already use");
         }
     }
-
 
     /**
      * Mise a jour User

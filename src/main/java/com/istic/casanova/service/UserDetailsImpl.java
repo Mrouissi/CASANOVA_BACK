@@ -1,13 +1,15 @@
 package com.istic.casanova.service;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.istic.casanova.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -17,21 +19,56 @@ public class UserDetailsImpl implements UserDetails {
         this.user = user;
     }
 
-    @Override
+    private Collection<? extends GrantedAuthority> authorities;
+
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
+
+    private String email;
+
+    private String username;
+
+    @JsonIgnore
+    private String password;
+
+
+    public UserDetailsImpl(Long id,String username,String email, String password,
+                           Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.email = email;
+        this.username=username;
+        this.password = password;
+        this.authorities = authorities;
+    }
+
+    public static UserDetailsImpl build(User user) {
+        List<GrantedAuthority> authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName().name()))
+                .collect(Collectors.toList());
+
+        return new UserDetailsImpl(
+                user.getId(),
+                user.getUsername(),
+                user.getEmail(),
+                user.getPassword(),
+                authorities);
+    }
+
+    public String getFullName() {
+        return user.getPrenom() + " " + user.getNom(); }
+
+    /**  @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-        list.add(new SimpleGrantedAuthority(user.getRole()));
+        list.add(new SimpleGrantedAuthority(user.getRoles()));
         return list;
     }
+**/
 
     @Override
     public String getPassword() {
         return this.user.getPassword();
-    }
-
-    @Override
-    public String getUsername() {
-        return this.user.getEmail();
     }
 
     @Override
@@ -54,7 +91,27 @@ public class UserDetailsImpl implements UserDetails {
         return this.user.getIsEnabled();
     }
 
-    public String getFullName() {
-        return user.getPrenom() + " " + user.getNom();
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail(){ return email;}
+
+    public Long getId() {return id; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        UserDetailsImpl user = (UserDetailsImpl) o;
+        return Objects.equals(id, user.id);
     }
 }

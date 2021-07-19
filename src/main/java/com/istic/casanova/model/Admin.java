@@ -1,6 +1,5 @@
 package com.istic.casanova.model;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -9,9 +8,12 @@ import javax.persistence.Entity;
 @Entity
 public class Admin extends User {
 
-    @Column(name = "role")
-    private final String role = "ROLE_ADMIN";
 
-    public String getRole() { return role; }
+    public Admin (){super();}
+
+    public Admin(String password){
+        this.setPassword(password);
+    }
+
 
 }

@@ -1,13 +1,15 @@
 package com.istic.casanova.restcontroller;
 
-import com.istic.casanova.model.*;
+import com.istic.casanova.model.Chantier;
+import com.istic.casanova.model.Client;
+import com.istic.casanova.model.Dossier;
+import com.istic.casanova.model.FileDB;
 import com.istic.casanova.repository.ChantierRepository;
 import com.istic.casanova.repository.ClientRepository;
 import com.istic.casanova.repository.DossierRepository;
 import com.istic.casanova.service.EmailSenderService;
 import com.istic.casanova.service.FileStorageService;
 import com.istic.casanova.utils.message.ResponseFile;
-import com.istic.casanova.utils.message.ResponseMessage;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,10 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -49,6 +48,9 @@ public class DossierController {
                                               @RequestParam("file") MultipartFile file
                                              ) throws NotFoundException {
         String message = "";
+
+        /*Optional<Client> client = clientRepository.findById(id);
+        System.out.println("test client : "+client);*/
         Optional<Dossier> dossier = dossierRepository.findById(id);
         if(dossier.isEmpty()) {
             throw new NotFoundException("Dossier not found, id : " + id);

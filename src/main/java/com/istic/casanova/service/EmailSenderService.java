@@ -27,7 +27,7 @@ public class EmailSenderService {
     public void sendEmailModif(Client client) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(client.getEmail());
-        mailMessage.setSubject("Modification Info client ");
+        mailMessage.setSubject("Modification Info client");
         mailMessage.setFrom(sendFromMail);
         mailMessage.setText(client.getNom() + "a changé ses infos");
         javaMailSender.send(mailMessage);

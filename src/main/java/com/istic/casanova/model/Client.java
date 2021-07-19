@@ -2,7 +2,9 @@ package com.istic.casanova.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,11 +32,6 @@ public class Client extends User {
     @Column(name = "tel_fixe")
     private String tel_fixe;
 
-    @Column(name = "tel_portable")
-    private String tel_portable;
-
-    @Column(name = "role")
-    private final String role = "ROLE_CLIENT";
 
     /**
      * Dossier lié au client
@@ -46,6 +43,8 @@ public class Client extends User {
     /**
      * Périodes d'abscences liées au Client
      */
+
+    @OneToMany(mappedBy = "client")
     @JsonManagedReference(value = "client_abs")
     private List<PeriodeAbs> periodes_abs;
 
@@ -89,16 +88,6 @@ public class Client extends User {
         this.tel_fixe = tel_fixe;
     }
 
-    public String getTel_portable() {
-        return tel_portable;
-    }
-
-    public void setTel_portable(String tel_portable) {
-        this.tel_portable = tel_portable;
-    }
-
-    public String getRole() { return role; }
-
     public String getDpt() {return dpt;}
 
     public void setDpt(String dpt) {this.dpt = dpt;}
@@ -110,7 +99,6 @@ public class Client extends User {
     }
     public void setDossiers(List<Dossier> dossiers) { this.dossiers = dossiers; }
 
-    @OneToMany(mappedBy = "client")
     public List<PeriodeAbs> getPeriodes_abs() { return periodes_abs; }
     public void setPeriodes_abs(List<PeriodeAbs> periodes_abs) { this.periodes_abs = periodes_abs; }
 }

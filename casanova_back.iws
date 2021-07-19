@@ -5,17 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ee36663-3364-4f95-863e-ff4938a4a795" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/casanova_back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/casanova_back.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/casanova_back.iws" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/extract/UserExcelExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/extract/UserExcelExporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Commercial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Commercial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/CommercialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/CommercialRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/AdminController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/ClientController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/CommercialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/CommercialController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/DossierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/DossierController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/ClientServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/ClientServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/AppUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/AppUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/EmailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/EmailSenderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/UserDetailsImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,12 +194,22 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="InspectionManager">
     <option name="AUTOSCROLL_TO_SOURCE" value="false" />
@@ -252,6 +269,9 @@
     <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
   </component>
   <component name="ProjectId" id="1tf3wZQ3Yejiu3ucvV1J9fDACKG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewSettings">
     <navigator currentView="ProjectPane" flattenPackages="false" showMembers="false" showStructure="false" autoscrollToSource="false" splitterProportion="0.5" />
     <view id="ProjectPane">
@@ -282,6 +302,11 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.istic.casanova.service" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Unnamed">
     <configuration selected="false" default="true" type="Applet" factoryName="Applet">
       <module name="" />
@@ -302,17 +327,6 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -383,7 +397,18 @@
       <workItem from="1624345608073" duration="14519000" />
       <workItem from="1624432814687" duration="1298000" />
       <workItem from="1624619258111" duration="541000" />
-      <workItem from="1624697873972" duration="655000" />
+      <workItem from="1624697873972" duration="1512000" />
+      <workItem from="1624865378673" duration="5496000" />
+      <workItem from="1625048428036" duration="6912000" />
+      <workItem from="1625287532030" duration="595000" />
+      <workItem from="1625468167739" duration="9134000" />
+      <workItem from="1625842383683" duration="13728000" />
+      <workItem from="1625876808184" duration="1853000" />
+      <workItem from="1625997076387" duration="34963000" />
+      <workItem from="1626099224075" duration="146000" />
+      <workItem from="1626099609154" duration="980000" />
+      <workItem from="1626100888579" duration="20524000" />
+      <workItem from="1626176080450" duration="7735000" />
     </task>
     <servers />
   </component>
@@ -488,5 +513,24 @@
   </component>
   <component name="WebViewSettings">
     <webview flattenPackages="false" showMembers="false" autoscrollToSource="false" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="6" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="userDetails.getAuthorities()" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

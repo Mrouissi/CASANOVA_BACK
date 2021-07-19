@@ -1,17 +1,21 @@
 package com.istic.casanova.restcontroller;
 
 import com.istic.casanova.model.Admin;
-import com.istic.casanova.model.Admin;
-import com.istic.casanova.model.User;
+import com.istic.casanova.model.ERole;
+import com.istic.casanova.model.Role;
 import com.istic.casanova.repository.AdminRepository;
+import com.istic.casanova.repository.RoleRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -19,6 +23,12 @@ public class AdminController {
 
     @Autowired
     private AdminRepository adminRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     /**
      * @return la liste des administrateurs
@@ -67,19 +77,30 @@ public class AdminController {
         adminRepository.deleteById(id);
     }
 
-    @PostMapping("/admins")
-    public ResponseEntity<String> createAdmin(@RequestBody Admin admin) {
-        Optional<Admin> testAdmin = adminRepository.findByEmail(admin.getEmail());
-        if (testAdmin.isEmpty()) {
-            User savedUser = adminRepository.save(admin);
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body("User created");
-        } else {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body("Email already use");
+    /**
+     *  Créer un administrateur
+     * @param admin
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("/registerAdmin")
+    public Admin createAdmin(@RequestBody Admin admin) throws Exception{
+        String tempEmail = admin.getEmail();
+        if (tempEmail != null && !"".equals(tempEmail)) {
+            Optional<Admin> testAdmin = adminRepository.findByEmail(tempEmail);
+            if (!testAdmin.isEmpty()) {
+                throw new Exception("l'administrateur " + tempEmail + " existe déjà.");
+            }
         }
+        Admin savedAdmin = new Admin();
+        Set<Role> roles = new HashSet<>();
+        Optional<Role> adminRole = roleRepository.findByName(ERole.ROLE_ADMIN);
+        roles.add(adminRole.get());
+        admin.setRoles(roles);
+        admin.setIsEnabled(true);
+        admin.setPassword(encoder.encode(admin.getPassword()));
+        savedAdmin = adminRepository.save(admin);
+        return savedAdmin;
     }
 
     /**

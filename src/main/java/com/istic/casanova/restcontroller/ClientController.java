@@ -130,7 +130,6 @@ public class ClientController {
             emailSenderService.sendEmailModif(client);
             return ResponseEntity.noContent().build();
         }
-
     }
 
     /**
@@ -188,6 +187,36 @@ public class ClientController {
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .body("PeriodeAbs created");
+        }
+    }
+
+    /**
+     * Mise à jour d'une periode d'absence
+     * @param id
+     * @param periodeAbs
+     * @return reponse
+     * @throws NotFoundException
+     */
+    @PostMapping("/clients/{id}/updateAbsence")
+    public ResponseEntity<String> UpdatePeriodeAbs(@PathVariable Long id, @RequestBody PeriodeAbs periodeAbs) throws NotFoundException {
+        Optional<Client> updateClient = clientRepository.findById(id);
+        if (updateClient.isEmpty()) {
+            throw new NotFoundException("Client not found, id : " + id);
+
+        } else {
+
+            PeriodeAbs periodeAbsUpdate = updateClient.get().getPeriodes_abs().get(0);
+            Date date_debut = periodeAbs.getDate_debut();
+            Date date_fin = periodeAbs.getDate_fin();
+            System.out.println("################################################"+date_debut);
+            periodeAbsUpdate.setDate_debut(date_debut);
+            periodeAbsUpdate.setDate_fin(date_fin);
+            periodeAbsRepository.save(periodeAbsUpdate);
+           /* emailSenderService.sendEmailAbs("Client " + updateClient.get().getNom() + " " +updateClient.get().getPrenom()+".\n"
+                    + "Période d'absence du " + periodeAbs.getDate_debut() +" au "+ periodeAbs.getDate_fin(), updateClient.get().getEmail());*/
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body("PeriodeAbs Update");
         }
     }
 
