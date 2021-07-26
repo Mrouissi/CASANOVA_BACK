@@ -5,25 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ee36663-3364-4f95-863e-ff4938a4a795" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/casanova_back.iml" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/casanova_back.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/casanova_back.iws" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Commercial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Commercial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/CommercialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/CommercialRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/ClientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/CommercialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/CommercialController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/DossierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/DossierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/AppUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/AppUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/EmailSenderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/EmailSenderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/service/UserDetailsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,9 +177,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -331,6 +314,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -409,6 +403,8 @@
       <workItem from="1626099609154" duration="980000" />
       <workItem from="1626100888579" duration="20524000" />
       <workItem from="1626176080450" duration="7735000" />
+      <workItem from="1626680170391" duration="6399000" />
+      <workItem from="1627286259233" duration="2391000" />
     </task>
     <servers />
   </component>
