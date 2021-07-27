@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,12 @@ public class Client extends User {
     @Column(name = "tel_fixe")
     private String tel_fixe;
 
+
+    @ManyToOne
+    private Commercial commercial;
+
+    @OneToMany(mappedBy = "client")
+    private List<BonDeCommande> bonDeCommandeList = new ArrayList<>();
 
     /**
      * Dossier lié au client
@@ -101,4 +108,21 @@ public class Client extends User {
 
     public List<PeriodeAbs> getPeriodes_abs() { return periodes_abs; }
     public void setPeriodes_abs(List<PeriodeAbs> periodes_abs) { this.periodes_abs = periodes_abs; }
+
+
+    public Commercial getCommercial() {
+        return commercial;
+    }
+
+    public void setCommercial(Commercial commercial) {
+        this.commercial = commercial;
+    }
+
+    public List<BonDeCommande> getBonDeCommandeList() {
+        return bonDeCommandeList;
+    }
+
+    public void setBonDeCommandeList(List<BonDeCommande> bonDeCommandeList) {
+        this.bonDeCommandeList = bonDeCommandeList;
+    }
 }
