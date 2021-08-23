@@ -7,14 +7,15 @@ import java.util.List;
 @Entity
 public class TypesTravaux {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
 
-    @OneToMany
-    private List<ElementARenover> elementARenoverList= new ArrayList<>();
 
+
+
+    private List<ElementARenover> elementARenover = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -31,11 +32,9 @@ public class TypesTravaux {
         this.nom = nom;
     }
 
-    public List<ElementARenover> getElementARenoverList() {
-        return elementARenoverList;
-    }
+    @OneToMany
+    public List<ElementARenover> getElementARenover() { return elementARenover; }
 
-    public void setElementARenoverList(List<ElementARenover> elementARenoverList) {
-        this.elementARenoverList = elementARenoverList;
-    }
+    public void setElementARenover(List<ElementARenover> elementARenover) {this.elementARenover = elementARenover;}
+
 }

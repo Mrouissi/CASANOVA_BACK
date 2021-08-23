@@ -7,15 +7,13 @@ import java.util.List;
 @Entity
 public class PrestationARealiser {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
-
     private String nom;
-
-    @OneToMany
     private List<SupportExistant> supportExistantList = new ArrayList<>();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -32,4 +30,12 @@ public class PrestationARealiser {
         this.nom = nom;
     }
 
+    @OneToMany
+    public List<SupportExistant> getSupportExistantList() {
+        return supportExistantList;
+    }
+
+    public void setSupportExistantList(List<SupportExistant> supportExistantList) {
+        this.supportExistantList = supportExistantList;
+    }
 }

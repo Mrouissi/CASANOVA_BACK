@@ -5,6 +5,7 @@ import com.istic.casanova.model.*;
 import com.istic.casanova.repository.ClientRepository;
 import com.istic.casanova.repository.DossierRepository;
 import com.istic.casanova.repository.PeriodeAbsRepository;
+import com.istic.casanova.repository.RoleRepository;
 import com.istic.casanova.service.ClientServices;
 import com.istic.casanova.service.EmailSenderService;
 import javassist.NotFoundException;
@@ -17,9 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -38,6 +37,10 @@ public class ClientController {
 
     @Autowired
     private EmailSenderService emailSenderService;
+
+    @Autowired
+    private RoleRepository roleRepository;
+
 
     /**
      *
@@ -94,20 +97,25 @@ public class ClientController {
      */
 
     //créer un client
-    @PostMapping("/clients")
-    public ResponseEntity<String> createClient(@RequestBody Client client) {
-        Optional<Client> testClient = clientRepository.findByEmail(client.getEmail());
-        if (testClient.isEmpty()) {
-            User savedUser = clientRepository.save(client);
-            return ResponseEntity
-                    .status(HttpStatus.OK)
-                    .body("User created");
-        } else {
-            return ResponseEntity
-                    .status(HttpStatus.CONFLICT)
-                    .body("Email already use");
+    @PostMapping("/registerclient")
+    public Client createClient (@RequestBody Client client) throws Exception{
+        String tempEmail = client.getEmail();
+        if (tempEmail != null && !"".equals(tempEmail)) {
+            Optional<Client> testClient = clientRepository.findByEmail(tempEmail);
+            if (!testClient.isEmpty()) {
+                throw new Exception("le Client " + tempEmail + " existe déjà.");
+            }
         }
+        Client savedClient = new Client();
+        Set<Role> roles = new HashSet<>();
+        Optional<Role> clientRole = roleRepository.findByName(ERole.ROLE_CLIENT);
+        roles.add(clientRole.get());
+        client.setRoles(roles);
+        client.setIsEnabled(true);
+        savedClient = clientRepository.save(client);
+        return savedClient;
     }
+
 
     /**
      * Modifier client

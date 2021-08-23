@@ -5,12 +5,12 @@ import javax.persistence.*;
 @Entity
 public class SupportExistant {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private Long id;
     private String nom;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

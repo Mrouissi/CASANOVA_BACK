@@ -7,15 +7,15 @@ import java.util.List;
 @Entity
 public class ElementARenover {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String nom ;
 
-    @OneToMany
     private List<PrestationARealiser> prestationARealiserList = new ArrayList<>();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -32,7 +32,7 @@ public class ElementARenover {
         this.nom = nom;
     }
 
-
+    @OneToMany
     public List<PrestationARealiser> getPrestationARealiserList() {
         return prestationARealiserList;
     }
@@ -40,5 +40,6 @@ public class ElementARenover {
     public void setPrestationARealiserList(List<PrestationARealiser> prestationARealiserList) {
         this.prestationARealiserList = prestationARealiserList;
     }
+
 
 }

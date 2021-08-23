@@ -29,7 +29,7 @@ public class User {
     @Column(name = "tel_portable")
     private String tel_portable;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @UniqueEmail

@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Entité Client : Hérite de User
  */
+
 @Entity
 public class Commercial extends User {
 
