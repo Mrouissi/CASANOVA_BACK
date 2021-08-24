@@ -34,8 +34,10 @@ public class Client extends User {
     private String tel_fixe;
 
 
+
     @ManyToOne
     private Commercial commercial;
+
 
     @OneToMany(mappedBy = "client")
     private List<BonDeCommande> bonDeCommandeList = new ArrayList<>();
@@ -117,6 +119,7 @@ public class Client extends User {
     public void setCommercial(Commercial commercial) {
         this.commercial = commercial;
     }
+
 
     public List<BonDeCommande> getBonDeCommandeList() {
         return bonDeCommandeList;

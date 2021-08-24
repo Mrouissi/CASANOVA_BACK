@@ -2,19 +2,18 @@ package com.istic.casanova.restcontroller;
 
 import com.istic.casanova.extract.UserExcelExporter;
 import com.istic.casanova.model.*;
-import com.istic.casanova.repository.ClientRepository;
-import com.istic.casanova.repository.DossierRepository;
-import com.istic.casanova.repository.PeriodeAbsRepository;
-import com.istic.casanova.repository.RoleRepository;
+import com.istic.casanova.repository.*;
 import com.istic.casanova.service.ClientServices;
 import com.istic.casanova.service.EmailSenderService;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +40,11 @@ public class ClientController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private CommercialRepository commercialRepository;
+
+    @Autowired
+    PasswordEncoder encoder;
 
     /**
      *
@@ -95,10 +99,8 @@ public class ClientController {
      * @param client
      * @return reponse
      */
-
-    //créer un client
-    @PostMapping("/registerclient")
-    public Client createClient (@RequestBody Client client) throws Exception{
+    @PostMapping("/commercial/{commercialId}/registerclient")
+    public Client createClient (@PathVariable (value = "commercialId") Long commercialId , @Valid @RequestBody Client client) throws Exception{
         String tempEmail = client.getEmail();
         if (tempEmail != null && !"".equals(tempEmail)) {
             Optional<Client> testClient = clientRepository.findByEmail(tempEmail);
@@ -106,39 +108,17 @@ public class ClientController {
                 throw new Exception("le Client " + tempEmail + " existe déjà.");
             }
         }
-        Client savedClient = new Client();
-        Set<Role> roles = new HashSet<>();
-        Optional<Role> clientRole = roleRepository.findByName(ERole.ROLE_CLIENT);
-        roles.add(clientRole.get());
-        client.setRoles(roles);
-        client.setIsEnabled(true);
-        savedClient = clientRepository.save(client);
-        return savedClient;
+       return commercialRepository.findById(commercialId).map(commercial ->{
+           client.setCommercial(commercial);
+           Set<Role> roles = new HashSet<>();
+           Optional<Role> clientRole = roleRepository.findByName(ERole.ROLE_CLIENT);
+           roles.add(clientRole.get());
+           client.setRoles(roles);
+           client.setIsEnabled(true);
+           return clientRepository.save(client);
+       }).orElseThrow(() -> new Exception("commercial not found"));
     }
 
-
-    /**
-     * Modifier client
-     * @param client
-     * @param id
-     * @return reponse
-     */
-    @PutMapping("/clients/{id}")
-    public ResponseEntity<Object> updateClient(@RequestBody Client client, @PathVariable long id) {
-        Optional<Client> clientOptional = clientRepository.findById(id);
-        if (clientOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        } else {
-            String pass = clientOptional.get().getPassword();
-            Boolean is_enable = clientOptional.get().getIsEnabled();
-            client.setId(id);
-            client.setPassword(pass);
-            client.setIsEnabled(is_enable);
-            clientRepository.save(client);
-            emailSenderService.sendEmailModif(client);
-            return ResponseEntity.noContent().build();
-        }
-    }
 
     /**
      *
@@ -226,6 +206,20 @@ public class ClientController {
                     .status(HttpStatus.OK)
                     .body("PeriodeAbs Update");
         }
+    }
+
+    /**
+     * Definition du mot de passe client
+     * @param client
+     * @param email
+     * @return reponse
+     */
+    @PostMapping("/clients/{email}")
+    public Client updateClient(@PathVariable String email, @RequestBody Client client) throws Exception{
+        return clientRepository.findByEmail(email).map(updateClient -> {
+            updateClient.setPassword(encoder.encode(client.getPassword()));
+            return clientRepository.save(updateClient);
+        }).orElseThrow(() -> new Exception("Client not found"));
     }
 
     /**

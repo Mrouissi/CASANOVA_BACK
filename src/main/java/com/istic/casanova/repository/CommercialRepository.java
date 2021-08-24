@@ -8,4 +8,5 @@ import javax.transaction.Transactional;
 public interface CommercialRepository extends AbstractRepository<Commercial>{
     Boolean existsByEmail(String email);
 
+
 }

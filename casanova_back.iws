@@ -4,30 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ee36663-3364-4f95-863e-ff4938a4a795" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/casanova_back.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.ipr" afterDir="false" />
+    <list default="true" id="7ee36663-3364-4f95-863e-ff4938a4a795" name="Default Changelist" comment="register client work">
       <change beforePath="$PROJECT_DIR$/casanova_back.iws" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Commercial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Commercial.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/ElementARenover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/ElementARenover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/PrestationARealiser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/PrestationARealiser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/SupportExistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/SupportExistant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/TypesTravaux.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/TypesTravaux.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/AgenceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/AgenceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/BonDeCommandeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/BonDeCommandeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/ComptantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/ComptantRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/ElementARenoverRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/ElementARenoverRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/EntiteVenteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/EntiteVenteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/FinancementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/FinancementRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/ModeReglementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/ModeReglementRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/OrganismeFinancementRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/OrganismeFinancementRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/OrigineContactRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/OrigineContactRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/PrestationARealaiserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/PrestationARealaiserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/PrixRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/PrixRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/SupportExistantRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/SupportExistantRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/TVARepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/TVARepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/TypesTravauxRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/TypesTravauxRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/BonDeCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/BonDeCommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/CommercialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/CommercialRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/ClientController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -419,8 +399,16 @@
       <workItem from="1627286259233" duration="33630000" />
       <workItem from="1627396836799" duration="41705000" />
       <workItem from="1629104649980" duration="1927000" />
-      <workItem from="1629191361024" duration="9527000" />
+      <workItem from="1629191361024" duration="23858000" />
     </task>
+    <task id="LOCAL-00001" summary="register client work">
+      <created>1629706252158</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1629706252158</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -472,6 +460,10 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="register client work" />
+    <option name="LAST_COMMIT_MESSAGE" value="register client work" />
   </component>
   <component name="VssConfiguration">
     <CheckoutOptions>
