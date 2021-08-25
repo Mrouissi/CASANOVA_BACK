@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="7ee36663-3364-4f95-863e-ff4938a4a795" name="Default Changelist" comment="register client work">
       <change beforePath="$PROJECT_DIR$/casanova_back.iws" beforeDir="false" afterPath="$PROJECT_DIR$/casanova_back.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/CommercialRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/CommercialRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Commercial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Commercial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Prix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/Prix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/SupportExistant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/SupportExistant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/TypesTravaux.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/model/TypesTravaux.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/ClientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/PlusValueRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/repository/PlusValueRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/istic/casanova/restcontroller/ClientController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,8 +184,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -399,7 +403,7 @@
       <workItem from="1627286259233" duration="33630000" />
       <workItem from="1627396836799" duration="41705000" />
       <workItem from="1629104649980" duration="1927000" />
-      <workItem from="1629191361024" duration="23858000" />
+      <workItem from="1629191361024" duration="31812000" />
     </task>
     <task id="LOCAL-00001" summary="register client work">
       <created>1629706252158</created>

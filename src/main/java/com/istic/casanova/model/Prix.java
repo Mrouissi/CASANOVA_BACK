@@ -10,7 +10,11 @@ public class Prix {
 
     private Double prixMetreHT;
 
-    private Double PrixForfait;
+    private Double prixForfait;
+
+    private Double PrixUnitaire;
+
+    private Double prixMlHT;
 
     @ManyToOne
     private PrestationARealiser prestationARealiser;
@@ -23,6 +27,9 @@ public class Prix {
 
     @ManyToOne
     private SupportExistant supportExistant;
+
+    @ManyToOne
+    private MateriauxMiseEnPlace materiauxMiseEnPlace;
 
     public Long getId() {
         return id;
@@ -40,13 +47,6 @@ public class Prix {
         this.prixMetreHT = prixMetreHT;
     }
 
-    public Double getPrixForfait() {
-        return PrixForfait;
-    }
-
-    public void setPrixForfait(Double prixForfait) {
-        PrixForfait = prixForfait;
-    }
 
     public PrestationARealiser getPrestationARealiser() {
         return prestationARealiser;
@@ -78,5 +78,37 @@ public class Prix {
 
     public void setSupportExistant(SupportExistant supportExistant) {
         this.supportExistant = supportExistant;
+    }
+
+    public Double getPrixForfait() {
+        return prixForfait;
+    }
+
+    public void setPrixForfait(Double prixForfait) {
+        this.prixForfait = prixForfait;
+    }
+
+    public Double getPrixUnitaire() {
+        return PrixUnitaire;
+    }
+
+    public void setPrixUnitaire(Double prixUnitaire) {
+        PrixUnitaire = prixUnitaire;
+    }
+
+    public Double getPrixMlHT() {
+        return prixMlHT;
+    }
+
+    public void setPrixMlHT(Double prixMlHT) {
+        this.prixMlHT = prixMlHT;
+    }
+
+    public MateriauxMiseEnPlace getMateriauxMiseEnPlace() {
+        return materiauxMiseEnPlace;
+    }
+
+    public void setMateriauxMiseEnPlace(MateriauxMiseEnPlace materiauxMiseEnPlace) {
+        this.materiauxMiseEnPlace = materiauxMiseEnPlace;
     }
 }

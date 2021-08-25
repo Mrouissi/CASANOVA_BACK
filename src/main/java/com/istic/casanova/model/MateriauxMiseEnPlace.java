@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class SupportExistant {
-
+public class MateriauxMiseEnPlace {
 
     private Long id;
     private String nom;
-    private List<MateriauxMiseEnPlace> materiauxMiseEnPlaces = new ArrayList<>();
+
+    private List<PlusValue> plusValueList= new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,12 +31,11 @@ public class SupportExistant {
     }
 
     @OneToMany
-    public List<MateriauxMiseEnPlace> getMateriauxMiseEnPlaces() {
-        return materiauxMiseEnPlaces;
+    public List<PlusValue> getPlusValueList() {
+        return plusValueList;
     }
 
-    public void setMateriauxMiseEnPlaces(List<MateriauxMiseEnPlace> materiauxMiseEnPlaces) {
-        this.materiauxMiseEnPlaces = materiauxMiseEnPlaces;
+    public void setPlusValueList(List<PlusValue> plusValueList) {
+        this.plusValueList = plusValueList;
     }
-
 }

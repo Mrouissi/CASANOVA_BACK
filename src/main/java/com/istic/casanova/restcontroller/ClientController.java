@@ -119,6 +119,15 @@ public class ClientController {
        }).orElseThrow(() -> new Exception("commercial not found"));
     }
 
+    /**
+     *
+     * @param commercialId
+     * @return
+     */
+    @GetMapping("/commercials/{commercialId}/clients")
+    public List<Client> ByInstructor(@PathVariable Long commercialId) {
+        return clientRepository.findByCommercialId(commercialId);
+    }
 
     /**
      *

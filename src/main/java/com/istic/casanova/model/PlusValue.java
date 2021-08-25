@@ -1,16 +1,16 @@
 package com.istic.casanova.model;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
-public class TypesTravaux {
+public class PlusValue {
 
     private Long id;
     private String nom;
 
-    private List<ElementARenover> elementARenover = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,4 @@ public class TypesTravaux {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
-    @OneToMany
-    public List<ElementARenover> getElementARenover() { return elementARenover; }
-
-    public void setElementARenover(List<ElementARenover> elementARenover) {this.elementARenover = elementARenover;}
-
 }
